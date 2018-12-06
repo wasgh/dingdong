@@ -24,7 +24,9 @@ public class SchoolMusic extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
         //wasim is here
+
           Parent root = FXMLLoader.load(getClass().getResource(Routes.LOGINVIEW));
         JFXDecorator decorator=new JFXDecorator(stage, root, false, false, true);
         decorator.setCustomMaximize(false);
