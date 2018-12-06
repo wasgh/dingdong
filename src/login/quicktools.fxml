@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.QuicktoolsController">
+  <stylesheets>
+        <URL value="@.../styles/styles.css" />
+    </stylesheets>
+    <children>
+      <ImageView fitHeight="566.0" fitWidth="616.0" layoutX="-34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/pianothemeblue.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnTodaysCalender" contentDisplay="RIGHT" layoutX="322.0" layoutY="58.0" onAction="#TodaysCalenderFn" prefHeight="37.0" prefWidth="183.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Today's Calender">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/calendar.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnTuner" contentDisplay="RIGHT" layoutX="322.0" layoutY="133.0" onAction="#TunerFn" prefHeight="37.0" prefWidth="183.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Digital Tuner">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="29.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/icons8_Tuning_Fork_100px_1.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnBack" layoutX="81.0" layoutY="518.0" onAction="#BackToLoginPage" prefHeight="45.0" prefWidth="151.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Login Page">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/arrowback.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <Label fx:id="birdbtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="-6.0" layoutY="6.0" onMousePressed="#PlayMusic" onMouseReleased="#StopMusic" prefHeight="52.0" prefWidth="120.0" styleClass="black-label" stylesheets="@../styles/styles.css" textOverrun="CLIP">
+         <graphic>
+            <ImageView fitHeight="66.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/birdlogo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+   </children>
+</AnchorPane>

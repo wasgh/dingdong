@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schoolmusic.HomeViewController">
+   <stylesheets>
+        <URL value="@/styles/styles.css" />
+    </stylesheets>
+    <children>
+      <JFXToolbar fx:id="toolbar" layoutX="-1.0" layoutY="-4.0" prefHeight="40.0" prefWidth="1200.0" styleClass="jfx-toolbar" stylesheets="@../styles/styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Label fx:id="txtCurrentWindow" alignment="CENTER" prefHeight="40.0" prefWidth="372.0" styleClass="card-title" stylesheets="@../styles/styles.css" text="Home page" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER" />
+         </center>
+         <right>
+            
+         </right>
+         <left>
+            <JFXHamburger fx:id="hamburger" prefHeight="40.0" prefWidth="53.0" styleClass="jfx-hamburger" stylesheets="@../styles/styles.css" BorderPane.alignment="CENTER" />
+         </left>
+      </JFXToolbar>
+      <AnchorPane fx:id="holderPane" layoutX="2.0" layoutY="39.0" prefHeight="721.0" prefWidth="1200.0" />
+          
+                                                                          
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutX="-1.0" layoutY="40.0" prefHeight="704.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

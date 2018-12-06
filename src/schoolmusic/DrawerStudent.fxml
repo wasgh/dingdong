@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="155.0" styleClass="card-unpadded" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schoolmusic.DrawerController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="94.0" prefWidth="155.0" stylesheets="@../styles/styles.css">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/music%20school%20logo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+     <JFXButton fx:id="homeBtn" accessibleText="homeMenu" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" text="Home Page" />
+      <JFXButton fx:id="myprofileBtn" accessibleText="profileMenu" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" text="My Profile" />
+      <JFXButton fx:id="contactusBtn" accessibleText="contactusMenu" layoutX="10.0" layoutY="182.0" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" text="Contact Us" />
+      <JFXButton fx:id="logoutBtn" accessibleText="logoutMenu" layoutX="10.0" layoutY="182.0" onAction="#logOut" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" text="Logout" />
+      <JFXButton fx:id="exitBtn" accessibleText="exitMenu" onAction="#exit" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" text="Exit" />
+      <JFXButton fx:id="btnMusic" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onMousePressed="#PlayMusic" onMouseReleased="#StopMusic" prefHeight="381.0" prefWidth="155.0" styleClass="grey-btn" text="  ">
+        <graphic>
+            <ImageView fitHeight="132.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/OudIcon.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+   </children>
+</VBox>
