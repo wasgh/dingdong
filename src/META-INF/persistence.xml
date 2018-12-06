@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="schoolMusicFxPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>Database.TableEvent</class>
+    <class>Database.TableLevelInMusicalInstr</class>
+    <class>Database.TableManager</class>
+    <class>Database.TableMessage</class>
+    <class>Database.TableMusicalInstrument</class>
+    <class>Database.TableStudent</class>
+    <class>Database.TableTeacher</class>
+    <class>Database.TableUsername</class>
+    <class>ContactUsers.TableLevelInMusicalInstr</class>
+    <class>ContactUsers.TableEvent</class>
+    <class>ContactUsers.TableMusicalInstrument</class>
+    <class>ContactUsers.TableMessage</class>
+    <class>ContactUsers.TableTeacher</class>
+    <class>ContactUsers.TableManager</class>
+    <class>ContactUsers.TableUsername</class>
+    <class>ContactUsers.TableStudent</class>
+  
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+      <property name="javax.persistence.jdbc.user" value="hr"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password" value="hr"/>
+    </properties>
+  </persistence-unit>
+</persistence>

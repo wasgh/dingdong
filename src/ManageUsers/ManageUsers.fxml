@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="1200.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageUsers.ManageUsersController">
+    <children>
+        <JFXTabPane layoutX="138.0" layoutY="100.0" prefHeight="684.0" prefWidth="1105.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab text="ADD USER">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1091.0">
+                            <children>
+                                <AnchorPane layoutX="22.0" layoutY="208.0" prefHeight="464.0" prefWidth="1178.0" styleClass="card-unpadded" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="0.0">
+                                    <children>
+                                        <VBox layoutX="20.0" layoutY="14.0" prefHeight="428.0" prefWidth="417.0" spacing="30.0">
+                                            <children>
+                                                <JFXTextField fx:id="tfauFirstName" focusColor="#00add8" labelFloat="true" promptText="First Name" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
+                                                <JFXTextField fx:id="tfauLastName" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Last Name" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
+                                                <JFXTextField fx:id="tfauEmail" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="46.0" promptText="Email address" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
+                                                <JFXTextField fx:id="tfauPhoneNumber" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="82.0" promptText="Phone Number" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
+                                                <HBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="397.0" spacing="5.0">
+                                                    <children>
+                                                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="102.0" stylesheets="@../styles/styles.css" text="Gender" textAlignment="CENTER">
+                                                            <effect>
+                                                                <Blend />
+                                                            </effect>
+                                                        </Label>
+                                                        <JFXCheckBox fx:id="checkboxauMale" onAction="#GenderSelection" prefHeight="29.0" prefWidth="111.0" stylesheets="@../styles/styles.css" text="Male" />
+                                                        <JFXCheckBox fx:id="checkboxauFemale" onAction="#GenderSelection" prefHeight="169.0" prefWidth="127.0" stylesheets="@../styles/styles.css" text="Female" />
+                                                    </children>
+                                                </HBox>
+                                                <JFXTextField fx:id="tfauSSN" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="118.0" promptText="SSN" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
+                                                <JFXDatePicker fx:id="dpauBirthdate" prefHeight="34.0" prefWidth="384.0" promptText="Birthdate" stylesheets="@../styles/styles.css" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="20.0" top="10.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox layoutX="499.0" layoutY="14.0" prefHeight="388.0" prefWidth="647.0" spacing="10.0">
+                                            <children>
+                                                <HBox prefHeight="52.0" prefWidth="503.0" spacing="30.0">
+                                                    <children>
+                                                        <JFXTextField fx:id="tfauUsername" focusColor="#00add8" labelFloat="true" maxWidth="258.0" minWidth="228.0" prefHeight="34.0" prefWidth="238.0" promptText="Username" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
+                                                        <JFXTextField fx:id="tfauPassword" accessibleRole="PASSWORD_FIELD" focusColor="#00add8" labelFloat="true" maxWidth="272.0" minWidth="174.0" prefHeight="34.0" prefWidth="272.0" promptText="Password" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
+                                                    </children>
+                                                </HBox>
+                                                <VBox layoutX="10.0" layoutY="10.0" prefHeight="82.0" prefWidth="553.0" spacing="5.0">
+                                                    <children>
+                                                        <HBox prefHeight="42.0" prefWidth="545.0" spacing="10.0">
+                                                            <children>
+                                                                <Label alignment="CENTER" prefHeight="42.0" prefWidth="80.0" stylesheets="@../styles/styles.css" text="Select" textAlignment="CENTER">
+                                                                    <effect>
+                                                                        <InnerShadow />
+                                                                    </effect>
+                                                                </Label>
+                                                                <JFXComboBox fx:id="cbauRank" prefHeight="40.0" prefWidth="138.0" promptText="Rank" stylesheets="@../styles/styles.css" />
+                                                                <JFXComboBox fx:id="cbauSkill" prefHeight="40.0" prefWidth="136.0" promptText="Skill" stylesheets="@../styles/styles.css" />
+                                                                <JFXComboBox fx:id="cbauLevel" prefHeight="40.0" prefWidth="147.0" promptText="Level" stylesheets="@../styles/styles.css" />
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                                <JFXTextArea fx:id="taauAdditionalInfo" maxWidth="480.0" minWidth="404.0" prefHeight="98.0" prefWidth="480.0" promptText="Additional Info" stylesheets="@../styles/styles.css" />
+                                                <Separator prefWidth="200.0" />
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="77.0" prefWidth="511.0" spacing="20.0">
+                                                    <children>
+                                                        <JFXButton fx:id="btnauClear" styleClass="cancel-button" stylesheets="@../styles/styles.css" text="Clear" />
+                                                        <JFXButton fx:id="btnauAddUser" layoutX="72.0" layoutY="10.0" onAction="#btnauAddUserAction" prefHeight="37.0" prefWidth="132.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="ADD USER">
+                                                            <effect>
+                                                                <DropShadow />
+                                                            </effect>
+                                                        </JFXButton>
+                                                    </children>
+                                                    <padding>
+                                                        <Insets right="20.0" />
+                                                    </padding>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets left="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                                <HBox layoutX="15.0" layoutY="6.0" prefHeight="162.0" prefWidth="1081.0" spacing="30.0">
+                                    <children>
+                                        <AnchorPane prefHeight="162.0" prefWidth="328.0" style="-fx-background-color: #00ADD8;" styleClass="card-unpadded" stylesheets="@../styles/styles.css">
+                                            <children>
+                                                <Pane layoutX="-1.0" prefHeight="151.0" prefWidth="23.0" style="-fx-background-color: #007390;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0" />
+                                                <ImageView fitHeight="131.0" fitWidth="187.0" layoutX="33.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../imgs/people.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label fx:id="labelRegisteredStudents" layoutX="176.0" layoutY="28.0" prefHeight="93.0" prefWidth="111.0" styleClass="custom-white-title-label">
+                                                    <effect>
+                                                        <DropShadow />
+                                                    </effect>
+                                                </Label>
+                                                <Label layoutX="175.0" layoutY="97.0" prefHeight="31.0" prefWidth="150.0" styleClass="custom-white-label" stylesheets="@../styles/styles.css" text="Registered Students" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane prefHeight="162.0" prefWidth="330.0" style="-fx-background-color: #DD4B39;" styleClass="card-unpadded" stylesheets="@../styles/styles.css">
+                                            <children>
+                                                <Pane layoutX="-1.0" prefHeight="152.0" prefWidth="23.0" style="-fx-background-color: #C74433;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0" />
+                                                <ImageView fitHeight="125.0" fitWidth="124.0" layoutX="33.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../imgs/peopleadault.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label fx:id="labelRegisteredTeachers" layoutX="167.0" layoutY="28.0" prefHeight="95.0" prefWidth="119.0" style="-fx-font-size: 20;" styleClass="custom-white-title-label">
+                                                    <effect>
+                                                        <DropShadow />
+                                                    </effect>
+                                                </Label>
+                                                <Label layoutX="164.0" layoutY="95.0" prefHeight="31.0" prefWidth="170.0" styleClass="custom-white-label" stylesheets="@../styles/styles.css" text="Registered Teachers" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane prefHeight="162.0" prefWidth="331.0" style="-fx-background-color: #F39C12;" styleClass="card" stylesheets="@../styles/styles.css">
+                                            <children>
+                                                <Pane prefHeight="152.0" prefWidth="23.0" style="-fx-background-color: D98B10;" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="-17.0" AnchorPane.topAnchor="-17.0" />
+                                                <ImageView fitHeight="114.0" fitWidth="166.0" layoutX="24.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../imgs/manager.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label layoutX="144.0" layoutY="99.0" prefHeight="31.0" prefWidth="180.0" styleClass="custom-white-label" stylesheets="@../styles/styles.css" text="Administrators" />
+                                                <Label fx:id="labelAdministrators" layoutX="136.0" layoutY="31.0" prefHeight="97.0" prefWidth="117.0" style="-fx-font-size: 20;" styleClass="custom-white-title-label">
+                                                    <effect>
+                                                        <DropShadow />
+                                                    </effect>
+                                                </Label>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="EDIT USERS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1091.0">
+                            <children>
+                                <SplitPane dividerPositions="0.6173228346456693" layoutX="16.0" layoutY="6.0" orientation="VERTICAL" prefHeight="686.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="388.0" prefWidth="1103.0">
+                                            <children>
+                                                <TableView fx:id="tvMainTable" layoutX="11.0" layoutY="1.0" onMouseClicked="#displaySelected" prefHeight="416.0" prefWidth="1178.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="name" editable="false" prefWidth="209.0" text="Name">
+                                                            <columns>
+                                                                <TableColumn fx:id="firstNameColumn" editable="false" minWidth="22.0" prefWidth="150.0" text="First Name" />
+                                                                <TableColumn fx:id="lastNameColumn" editable="false" minWidth="22.0" prefWidth="150.0" text="Last Name" />
+                                                            </columns>
+                                                        </TableColumn>
+                                                        <TableColumn fx:id="usernameColumn" editable="false" prefWidth="128.0" text="Username" />
+                                                        <TableColumn fx:id="emailColumn" editable="false" prefWidth="173.0" text="Email" />
+                                                        <TableColumn fx:id="rankColumn" editable="false" prefWidth="167.0" text="Rank" />
+                                                        <TableColumn fx:id="skillColumn" editable="false" minWidth="0.0" prefWidth="112.0" text="Skill" />
+                                                        <TableColumn fx:id="phoneNumberColumn" editable="false" prefWidth="143.0" text="Phone Number" />
+                                                        <TableColumn fx:id="dataAddedColumn" editable="false" prefWidth="155.0" text="Date Added" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="1103.0">
+                                            <children>
+                                                <HBox layoutY="-2.0" prefHeight="262.0" prefWidth="1200.0">
+                                                    <children>
+                                                        <VBox prefHeight="248.0" prefWidth="441.0" spacing="18.0">
+                                                            <padding>
+                                                                <Insets bottom="10.0" left="20.0" top="10.0" />
+                                                            </padding>
+                                                            <children>
+                                                                <HBox prefHeight="0.0" prefWidth="446.0">
+                                                                    <children>
+                                                                        <Label prefHeight="35.0" prefWidth="80.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="FIRST NAME" />
+                                                                        <JFXTextField fx:id="tfeuFirstName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="310.0" stylesheets="@../styles/styles.css" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox prefHeight="0.0" prefWidth="446.0">
+                                                                    <children>
+                                                                        <Label prefHeight="30.0" prefWidth="80.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="LAST NAME" />
+                                                                        <JFXTextField fx:id="tfeuLastName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="306.0" stylesheets="@../styles/styles.css" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox prefHeight="0.0" prefWidth="446.0">
+                                                                    <children>
+                                                                        <Label prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="USERNAME" />
+                                                                        <JFXTextField fx:id="tfeuUserName" maxWidth="312.0" minWidth="204.0" prefHeight="34.0" prefWidth="312.0" stylesheets="@../styles/styles.css" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox prefHeight="0.0" prefWidth="446.0">
+                                                                    <children>
+                                                                        <Label prefHeight="30.0" prefWidth="87.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="PASSWORD" />
+                                                                        <JFXTextField fx:id="tfeuPassoword" maxWidth="312.0" minWidth="204.0" prefHeight="34.0" prefWidth="312.0" stylesheets="@../styles/styles.css" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox prefHeight="0.0" prefWidth="446.0">
+                                                                    <children>
+                                                                        <Label prefHeight="30.0" prefWidth="86.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="EMAIL" />
+                                                                        <JFXTextField fx:id="tfeuEmail" maxWidth="312.0" minWidth="204.0" prefHeight="34.0" prefWidth="312.0" stylesheets="@../styles/styles.css" />
+                                                                    </children>
+                                                                </HBox>
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox prefHeight="248.0" prefWidth="350.0" spacing="10.0">
+                                                            <children>
+                                                                <HBox prefHeight="0.0" prefWidth="446.0">
+                                                                    <children>
+                                                                        <Label prefHeight="34.0" prefWidth="178.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="PHONE NUMBER" />
+                                                                        <JFXTextField fx:id="tfeuPhoneNumber" maxWidth="312.0" minWidth="204.0" prefHeight="34.0" prefWidth="312.0" stylesheets="@../styles/styles.css" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                                    <children>
+                                                                        <Label prefHeight="29.0" prefWidth="80.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="Gender" />
+                                                                        <JFXCheckBox fx:id="checkboxeuMale" onAction="#GenderSelection" prefHeight="38.0" prefWidth="101.0" text="Male" />
+                                                                        <JFXCheckBox fx:id="checkboxeuFemale" onAction="#GenderSelection" prefHeight="36.0" prefWidth="100.0" text="Female" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox prefHeight="42.0" prefWidth="317.0">
+                                                                    <children>
+                                                                        <Label prefHeight="37.0" prefWidth="98.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="BIRTHDATE" />
+                                                                        <JFXDatePicker fx:id="dpeuBirthdate" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <JFXTextArea fx:id="taeuAdditionalInfo" maxWidth="377.0" minWidth="377.0" prefHeight="190.0" prefWidth="377.0" promptText="Additional Info" style="-fx-background-color: F4F4F4;" styleClass="text-field" stylesheets="@../styles/styles.css" />
+                                                            </children>
+                                                            <padding>
+                                                                <Insets left="20.0" top="10.0" />
+                                                            </padding>
+                                                        </VBox>
+                                                        <VBox alignment="CENTER" prefHeight="262.0" prefWidth="355.0" spacing="5.0">
+                                                            <children>
+                                                                <HBox prefHeight="57.0" prefWidth="307.0" spacing="5.0">
+                                                                    <children>
+                                                                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="351.0" stylesheets="@../styles/styles.css" text="Select">
+                                                                            <effect>
+                                                                                <Blend />
+                                                                            </effect>
+                                                                        </Label>
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox prefHeight="66.0" prefWidth="323.0" spacing="5.0">
+                                                                    <children>
+                                                                        <JFXComboBox fx:id="cbeuRank" prefHeight="40.0" prefWidth="123.0" promptText="Rank" />
+                                                                        <JFXComboBox fx:id="cbeuSkill" prefHeight="40.0" prefWidth="120.0" promptText="Skill" />
+                                                                        <JFXComboBox fx:id="cbeuLevel" prefHeight="40.0" prefWidth="97.0" promptText="Level" />
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox alignment="CENTER" prefHeight="19.0" prefWidth="305.0" spacing="2.0">
+                                                                    <children>
+                                                                        <JFXButton fx:id="btneuPrint" contentDisplay="RIGHT" opacity="0.71" prefHeight="84.0" prefWidth="142.0" styleClass="lgBtn" stylesheets="@../styles/styles.css" text="Print">
+                                                                            <graphic>
+                                                                                <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                                                    <image>
+                                                                                        <Image url="@../imgs/printicon.png" />
+                                                                                    </image>
+                                                                                </ImageView>
+                                                                            </graphic>
+                                                                        </JFXButton>
+                                                                        <JFXButton fx:id="btneuPrintAll" onAction="#btneuPrintAllAction"  contentDisplay="RIGHT" opacity="0.71" prefHeight="92.0" prefWidth="162.0" styleClass="lgBtn" stylesheets="@../styles/styles.css" text="Print All">
+                                                                            <graphic>
+                                                                                <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                                                    <image>
+                                                                                        <Image url="@../imgs/printicon.png" />
+                                                                                    </image>
+                                                                                </ImageView>
+                                                                            </graphic>
+                                                                        </JFXButton>
+                                                                    </children>
+                                                                </HBox>
+                                                                <JFXButton fx:id="btneuSaveChanges" onAction="#btneuSaveChangesAction" prefHeight="50.0" prefWidth="305.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Save Changes">
+                                                                    <effect>
+                                                                        <DropShadow />
+                                                                    </effect>
+                                                                </JFXButton>
+                                                                <JFXButton fx:id="btneuDeleteUser"  onAction="#btneuDeleteUserAction" prefHeight="43.0" prefWidth="305.0" styleClass="red-btn" stylesheets="@../styles/styles.css" text="Delete User">
+                                                                    <effect>
+                                                                        <InnerShadow />
+                                                                    </effect>
+                                                                </JFXButton>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </JFXTabPane>
+    </children>
+</AnchorPane>
