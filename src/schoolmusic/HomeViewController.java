@@ -187,6 +187,7 @@ public class HomeViewController implements Initializable {
                 AnchorPane contactus = FXMLLoader.load(getClass().getResource(Routes.CONTACTUS));
                 AnchorPane contactusers = FXMLLoader.load(getClass().getResource(Routes.CONTACTUSERS));
                 AnchorPane welcome = FXMLLoader.load(getClass().getResource(Routes.WELCOMEVIEW));
+                AnchorPane AssignStudents=FXMLLoader.load(getClass().getResource(Routes.ASSIGNSTUDENTS));
                 //              AnchorPane welcome    =welcomeController;
                 setNode(welcome);
                 drawer.setSidePane(sidePane);
@@ -268,6 +269,13 @@ public class HomeViewController implements Initializable {
 
                                     setNode(ManageUsers);
                                     this.txtCurrentWindow.setText("Manage Users");
+                                    transition.setRate(transition.getRate() * -1);
+                                    transition.play();
+                                    break;
+                                case "assignstudentMenu":
+                                    drawer.close();
+                                    setNode(AssignStudents);
+                                    this.txtCurrentWindow.setText("Assign Students");
                                     transition.setRate(transition.getRate() * -1);
                                     transition.play();
                                     break;

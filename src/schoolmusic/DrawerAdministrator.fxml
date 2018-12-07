@@ -25,6 +25,7 @@
       <JFXButton fx:id="myprofileBtn" accessibleText="profileMenu" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="My Profile" />
       <JFXButton fx:id="editcontactBtn" accessibleText="contactusersMenu" layoutX="10.0" layoutY="182.0" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Contact Users" />
       <JFXButton fx:id="manageusersBtn" accessibleText="manageusersMenu" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Manage Users" />
+      <JFXButton fx:id="assignstudentsBtn" accessibleText="assignstudentMenu" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Assign Students" />
       <JFXButton fx:id="logoutBtn" accessibleText="logoutMenu" layoutX="10.0" layoutY="182.0" onAction="#logOut" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Logout" />
       <JFXButton fx:id="exitBtn" accessibleText="exitMenu" onAction="#exit" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Exit" />
       <JFXButton fx:id="btnMusic" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onMousePressed="#PlayMusic" onMouseReleased="#StopMusic" prefHeight="369.0" prefWidth="155.0" styleClass="grey-btn" stylesheets="@../styles/styles.css" text="  ">
