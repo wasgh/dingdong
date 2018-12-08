@@ -283,17 +283,8 @@ public class ManageUsersController implements Initializable {
                         entityTeacher.getTransaction().begin();
                      
 
-                EntityManager entityManager = emf.createEntityManager();
-                TypedQuery<TableUsername> query = entityManager.createNamedQuery("TableUsername.findAll", TableUsername.class);
-                List<TableUsername> listUsernames = query.getResultList();
-
-//List<TableUsername>listUsernames = entityManager.createQuery("TableUsername.findAll").getResultList();
-                dataUsernames = FXCollections.observableArrayList();
-                for (TableUsername row : listUsernames) {
-                    dataUsernames.add(new TableUsername(row.getUsernameId(), row.getUsername(), row.getPassword(), row.getSex(), row.getAdditionalInfo(), row.getEmailAddress(), row.getSsn(), row.getDataadded(), row.getFirstName(), row.getLastName(), row.getBirthdate(), row.getPhoneNumber(), row.getRank(), row.getLevel(), row.getSkill()));
-                }
-                tvMainTable.setItems(dataUsernames);
-                CountType();
+               updateTable();
+                       CountType();
 
                 System.out.println("Entity saved.");
             }
@@ -310,34 +301,14 @@ public class ManageUsersController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //       cbauRank.setItems(FXCollections.observableArrayList(usersRank));
-        //            cbauSkill.setItems(FXCollections.observableArrayList(usersSkill));
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-        EntityManager entityManager = emf.createEntityManager();
-        TypedQuery<TableUsername> query = entityManager.createNamedQuery("TableUsername.findAll", TableUsername.class);
-        List<TableUsername> listUsernames = query.getResultList();
-
-//List<TableUsername>listUsernames = entityManager.createQuery("TableUsername.findAll").getResultList();
-        dataUsernames = FXCollections.observableArrayList();
-        for (TableUsername row : listUsernames) {
-            //  String Rank = getRankType(row);
-            dataUsernames.add(new TableUsername(row.getUsernameId(), row.getUsername(), row.getPassword(), row.getSex(), row.getAdditionalInfo(), row.getEmailAddress(), row.getSsn(), row.getDataadded(), row.getFirstName(), row.getLastName(), row.getBirthdate(), row.getPhoneNumber(), row.getRank(), row.getLevel(), row.getSkill()));
-        }
-        tvMainTable.setItems(dataUsernames);
-
-        //Query query = entityManager.createQuery("SELECT c FROM Country c");
-        //List results = query.getResultList();
+       updateTable();
         iscbauRankComboBoxEmpty = cbauRank.getSelectionModel().isEmpty();
         iscbauSkil1ComboBoxEmpty = cbauSkill.getSelectionModel().isEmpty();
-
-        // مختاراً بشكل افتراضي choiceBoxRole هنا قمنا بجعل العنصر الأول في الـ
         cbauRank.getSelectionModel().clearSelection();
         cbauSkill.getSelectionModel().clearSelection();
 
         initColumns();
-
-        //filling the Combobox      
-        List<String> list = new ArrayList<String>();
+   List<String> list = new ArrayList<String>();
         list.add("1");
         list.add("2");
         list.add("3");
@@ -541,6 +512,7 @@ public class ManageUsersController implements Initializable {
             new Alert(Alert.AlertType.CONFIRMATION, "User has been updated", ButtonType.CLOSE).show();
             dataUsernames.set(tvMainTable.getSelectionModel().getFocusedIndex(), usernameEdit);
             clearFields();
+            updateTable();
         } else {
             new Alert(Alert.AlertType.CONFIRMATION, "updating User was failed", ButtonType.CLOSE).show();
 
@@ -699,5 +671,17 @@ public class ManageUsersController implements Initializable {
             Logger.getLogger(ManageUsersController.class.getName()).log(Level.SEVERE, null, ex);
         }*/
     }
+void updateTable(){
+
+   EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityManager = emf.createEntityManager();
+        TypedQuery<TableUsername> query = entityManager.createNamedQuery("TableUsername.findAll", TableUsername.class);
+        List<TableUsername> listUsernames = query.getResultList();
+        dataUsernames = FXCollections.observableArrayList();
+        for (TableUsername row : listUsernames) {
+            dataUsernames.add(new TableUsername(row.getUsernameId(), row.getUsername(), row.getPassword(), row.getSex(), row.getAdditionalInfo(), row.getEmailAddress(), row.getSsn(), row.getDataadded(), row.getFirstName(), row.getLastName(), row.getBirthdate(), row.getPhoneNumber(), row.getRank(), row.getLevel(), row.getSkill()));
+        }
+        tvMainTable.setItems(dataUsernames);
+}
 
 }
