@@ -225,13 +225,7 @@ public class ManageUsersController implements Initializable {
         CountType();
 
         TableUsername username = new TableUsername();
-        //   DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-        String uri = "jdbc:oracle:thin:@localhost:1521:orcl";
-        String user = "hr";
-        String password = "hr";
-        //   Connection connection = DriverManager.getConnection(uri,user,password);
-        //   Statement statement = connection.createStatement();
-
+       
         DateTimeFormatter dataAdded = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         // LocalDateTime now = LocalDateTime.now();
         Date dateNow = Date.valueOf(LocalDate.now());
@@ -244,22 +238,23 @@ public class ManageUsersController implements Initializable {
         String LastNameString = tfauLastName.getText();
         username.setUsername(UsernameString);
         String SnnString = tfauSSN.getText();
+        String Gender=checkboxauMale.isSelected()? "M":"F";
         String dpauBirthdateString = (dpauBirthdate.getValue() != null ? dpauBirthdate.getValue().toString() : "");
         String RankString = (cbauRank.getValue() != null ? cbauRank.getSelectionModel().getSelectedItem().toString() : "");
         String LevelString = (cbauLevel.getValue() != null ? cbauLevel.getSelectionModel().getSelectedItem().toString() : "");
         String SkillString = (cbauSkill.getValue() != null ? cbauSkill.getSelectionModel().getSelectedItem().toString() : "");
 
-        String SexString = (aucheckFemaleORMale() != null ? aucheckFemaleORMale() : "");
+        //String SexString = (aucheckFemaleORMale() != null ? aucheckFemaleORMale() : "");
         //  LocalDate localDate = dpauBirthdate.getValue();
 //        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
 
         //java.util.Date dateBirthdate = Date.from(instant);
-        if (!tfauFirstName.equals("") && !tfauLastName.equals("") && !tfauEmail.equals("") && !tfauUsername.equals("") && !tfauPassword.equals("") && !tfauSSN.equals("") && !RankString.equals("") && !dpauBirthdateString.equals("") && !LevelString.equals("")) {
+        if (!tfauFirstName.equals("") && !tfauLastName.equals("") && !tfauEmail.equals("") && !tfauUsername.equals("") && !tfauPassword.equals("") && !tfauSSN.equals("") && !RankString.equals("") && !dpauBirthdateString.equals("") && !LevelString.equals("")&&!Gender.isEmpty()) {
             LocalDate localDatedpauBirthdate = dpauBirthdate.getValue();
             Date dateBirthdate = Date.valueOf(localDatedpauBirthdate);
             if (!checkByUsername(UsernameString)) {
-                new Alert(Alert.AlertType.WARNING, "must onther username").show();
-                System.out.println("Not Entity saved.");
+                new Alert(Alert.AlertType.WARNING, "Username Already Exists !").show();
+                System.out.println("Entity not saved");
 
             } else {
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
@@ -272,7 +267,7 @@ public class ManageUsersController implements Initializable {
                         username.setPassword(PasswordString);
                         username.setPhoneNumber(PhoneNumberString);
                         username.setSsn(SnnString);
-                        username.setSex(SexString);
+                        username.setSex(Gender);
                         username.setFirstName(FirstNameString);
                         username.setLastName(LastNameString);
                         username.setEmailAddress(EmailString);
@@ -284,16 +279,6 @@ public class ManageUsersController implements Initializable {
                         entityUsername.persist(username);
                         entityUsername.getTransaction().commit();
                         entityUsername.close();
-                        /**
-                         * @Entity @SequenceGenerator(name =
-                         * "SequenceIdGenerator", sequenceName =
-                         * "USERNAME_ID_SEQUENCE", allocationSize = 1)
-                         * @Id
-                         * @GeneratedValue(generator = "SequenceIdGenerator")
-                         *
-                         * @author wasim
-                         */
-
                         EntityManager entityTeacher = emf.createEntityManager();
                         entityTeacher.getTransaction().begin();
                      
@@ -488,27 +473,6 @@ public class ManageUsersController implements Initializable {
                 //       dpeuBirthdate.getEditor().setText(username.getBirthdate().toString());
                 tfeuPhoneNumber.setText(usernameEdit.getPhoneNumber());
 
-               /* System.out.println("Manager : " + getRankTypeManager(usernameEdit));
-                System.out.println("Student : " + getRankTypeStudent(usernameEdit));
-                System.out.println("Teacher : " + getRankTypeTeacher(usernameEdit));*/
-                /*  if(usernameEdit.getTableStudent()==null)
-                    {
-                        System.out.println("Student null");
-                    }
-                      if(usernameEdit.getTableManager()==null)
-                    {
-                        System.out.println("Manager null");
-                    }
-                        if(usernameEdit.getTableTeacher()==null)
-                    {
-                        System.out.println("Teacher null");
-                    }*/
-                //   else{
-                //            System.out.print(String.valueOf(usernameEdit.getTableStudent().getIdStudent()));
-                //            System.out.print(String.valueOf(usernameEdit.getTableManager().getIdManager()));
-                //          System.out.print(String.valueOf(usernameEdit.getTableTeacher().getIdTeacher()));
-
-                //   }
                 cbeuRank.setValue(usernameEdit.getRank());
                 cbeuLevel.setValue(new String(usernameEdit.getLevel().toByteArray()));
                 cbeuSkill.setValue(usernameEdit.getSkill());
@@ -528,16 +492,6 @@ public class ManageUsersController implements Initializable {
 
     }
 
-    /* public ObservableList<Person> getPersonsData() {
-        entityClass = new EntityClass();
-        dataUsernames = FXCollections.observableArrayList(entityClass.getPersons());
-        if (dataUsernames == null) {
-            return FXCollections.observableArrayList();
-        } else {
-            return dataUsernames;
-        }
-
-    }*/
     private String aucheckFemaleORMale() {
         if (this.checkboxauMale.isSelected()) {
             return "M";

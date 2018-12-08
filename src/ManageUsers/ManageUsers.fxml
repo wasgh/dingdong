@@ -276,16 +276,7 @@
                                                                 </HBox>
                                                                 <HBox alignment="CENTER" prefHeight="19.0" prefWidth="305.0" spacing="2.0">
                                                                     <children>
-                                                                        <JFXButton fx:id="btneuPrint" contentDisplay="RIGHT" opacity="0.71" prefHeight="84.0" prefWidth="142.0" styleClass="lgBtn" stylesheets="@../styles/styles.css" text="Print">
-                                                                            <graphic>
-                                                                                <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                                                                    <image>
-                                                                                        <Image url="@../imgs/printicon.png" />
-                                                                                    </image>
-                                                                                </ImageView>
-                                                                            </graphic>
-                                                                        </JFXButton>
-                                                                        <JFXButton fx:id="btneuPrintAll" contentDisplay="RIGHT" onAction="#btneuPrintAllAction" opacity="0.71" prefHeight="92.0" prefWidth="162.0" styleClass="lgBtn" stylesheets="@../styles/styles.css" text="Print All">
+                                                                        <JFXButton fx:id="btneuPrintAll" contentDisplay="RIGHT" onAction="#btneuPrintAllAction" opacity="0.71" prefHeight="37.0" prefWidth="302.0" styleClass="lgBtn" stylesheets="@../styles/styles.css" text="Print">
                                                                             <graphic>
                                                                                 <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                                                                     <image>

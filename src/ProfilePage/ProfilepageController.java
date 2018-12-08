@@ -80,24 +80,7 @@ public class ProfilepageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Un=Routes.un;
-    Pw=Routes.pw;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-        EntityManager entityWelcome = emf.createEntityManager();
-        System.out.println("" + this.Un + this.Pw);
-        tableUsername = (TableUsername) entityWelcome.createNativeQuery("Select * FROM table_username Where table_username.username=" + "'" + this.Un + "'" + " and table_username.password=" + "'" + this.Pw + "'", TableUsername.class).getSingleResult();
-
-    labelName.setText(tableUsername.getFirstName()+tableUsername.getLastName());      
-    labelUsername.setText(tableUsername.getUsername());
-    labelSkill.setText(tableUsername.getUsername());
-    labelRank.setText(tableUsername.getUsername());
-   // labelLevel.setText(tableUsernameSigenIn.getLevel().toByteArray());
-    tfPhoneNumber.setText(tableUsername.getPhoneNumber());
-    tfAdditionalInfo.setText(tableUsername.getAdditionalInfo());
-    tfEmail.setText(tableUsername.getEmailAddress());
-        
-    
-
+        updateInfo();
 
     }    
 
@@ -133,6 +116,26 @@ ProfilepageController.tableUsernameSigenIn=tableUsernameSigenIn;    }
         return tableUsernameSigenIn;
     }
 
+    public void updateInfo()
+           {
+               Un=Routes.un;
+    Pw=Routes.pw;
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityWelcome = emf.createEntityManager();
+        System.out.println("" + this.Un + this.Pw);
+        tableUsername = (TableUsername) entityWelcome.createNativeQuery("Select * FROM table_username Where table_username.username=" + "'" + this.Un + "'" + " and table_username.password=" + "'" + this.Pw + "'", TableUsername.class).getSingleResult();
+
+    labelName.setText(tableUsername.getFirstName()+tableUsername.getLastName());      
+    labelUsername.setText(tableUsername.getUsername());
+    labelSkill.setText(tableUsername.getUsername());
+    labelRank.setText(tableUsername.getUsername());
+   // labelLevel.setText(tableUsernameSigenIn.getLevel().toByteArray());
+    tfPhoneNumber.setText(tableUsername.getPhoneNumber());
+    tfAdditionalInfo.setText(tableUsername.getAdditionalInfo());
+    tfEmail.setText(tableUsername.getEmailAddress());
+        
+    
+           }
  }
     
 

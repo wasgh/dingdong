@@ -183,7 +183,7 @@ public class HomeViewController implements Initializable {
 
                 AnchorPane login = FXMLLoader.load(getClass().getResource(Routes.LOGINVIEW));
                 AnchorPane ManageUsers = FXMLLoader.load(getClass().getResource(Routes.MANAGEUSERS));
-                AnchorPane Profileview = FXMLLoader.load(getClass().getResource(Routes.PROFILEVIEW));
+               
                 AnchorPane contactus = FXMLLoader.load(getClass().getResource(Routes.CONTACTUS));
                 AnchorPane contactusers = FXMLLoader.load(getClass().getResource(Routes.CONTACTUSERS));
                 AnchorPane welcome = FXMLLoader.load(getClass().getResource(Routes.WELCOMEVIEW));
@@ -215,24 +215,20 @@ public class HomeViewController implements Initializable {
                                     break;
 
                                 case "profileMenu":
-                                    FXMLLoader ProfileviewfXMLLoader = new FXMLLoader(getClass().getResource(Routes.PROFILEVIEW));
-                                     {
-                                        try {
-                                            Parent root = (Parent) ProfileviewfXMLLoader.load();
-                                        } catch (IOException ex) {
-                                            Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-                                    }
-                                    ProfilepageController profilepageController = (ProfilepageController) ProfileviewfXMLLoader.getController();
-
-                                    //System.out.println(""+stringUsername+stringPassword);
-                                    profilepageController.setUser(tableUsername);
-
-                                    drawer.close();
+                                    AnchorPane Profileview;
+                            try {
+                                Profileview = FXMLLoader.load(getClass().getResource(Routes.PROFILEVIEW));
+                                 drawer.close();
                                     setNode(Profileview);
+                                    
                                     this.txtCurrentWindow.setText("Profile Page");
                                     transition.setRate(transition.getRate() * -1);
                                     transition.play();
+                            } catch (IOException ex) {
+                                Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                                    
+                                   
                                     break;
 
                                 case "contactusMenu":
