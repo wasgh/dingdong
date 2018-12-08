@@ -5,19 +5,28 @@
  */
 package ProfilePage;
 
-
+import java.util.Date;
 import Database.TableUsername;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import helpers.Routes;
 import java.io.File;
+import java.math.BigDecimal;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -127,15 +136,85 @@ ProfilepageController.tableUsernameSigenIn=tableUsernameSigenIn;    }
 
     labelName.setText(tableUsername.getFirstName()+tableUsername.getLastName());      
     labelUsername.setText(tableUsername.getUsername());
-    labelSkill.setText(tableUsername.getUsername());
-    labelRank.setText(tableUsername.getUsername());
-   // labelLevel.setText(tableUsernameSigenIn.getLevel().toByteArray());
+    labelSkill.setText(tableUsername.getSkill());
+    labelRank.setText(tableUsername.getRank());
+LocalDate birthday = tableUsername.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+// using period
+Period period = Period.between(birthday, LocalDate.now());
+    labelAge.setText(String.valueOf(period.getYears()));
+    System.out.print(period.getYears());
+    //labelAge.setText();
+    labelLevel.setText(tableUsername.getLevel().toString());
     tfPhoneNumber.setText(tableUsername.getPhoneNumber());
     tfAdditionalInfo.setText(tableUsername.getAdditionalInfo());
     tfEmail.setText(tableUsername.getEmailAddress());
-        
+    
     
            }
+    
+    
+       @FXML
+    void saveChanges(ActionEvent event) {
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityWelcome = emf.createEntityManager();
+        System.out.println("" + this.Un + this.Pw);
+        tableUsername = (TableUsername) entityWelcome.createNativeQuery("Select * FROM table_username Where table_username.username=" + "'" + this.Un + "'" + " and table_username.password=" + "'" + this.Pw + "'", TableUsername.class).getSingleResult();
+
+        String additionalInfo = (tfAdditionalInfo.getText()!= null ? tfAdditionalInfo.getText() : "");
+        String phoneNo = (tfPhoneNumber.getText() != null ? tfPhoneNumber.getText() : "");
+        String Email = (tfEmail.getText() != null ? tfEmail.getText() : "");
+       
+
+        
+        tableUsername.setAdditionalInfo(additionalInfo);
+        tableUsername.setPhoneNumber(phoneNo);
+        tableUsername.setEmailAddress(Email);
+
+        if (updateUsername(tableUsername, tableUsername.getUsernameId())) {
+            
+            new Alert(Alert.AlertType.CONFIRMATION, "User has been updated", ButtonType.CLOSE).show();
+            
+            
+        } else {
+            new Alert(Alert.AlertType.CONFIRMATION, "updating User was failed", ButtonType.CLOSE).show();
+
+        }
+        
+        
+    }
+    
+    
+    
+    
+     public boolean updateUsername(TableUsername tableUsername, BigDecimal usernameID) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityUsername = emf.createEntityManager();
+       
+        try {
+            entityUsername.getTransaction().begin();
+            TableUsername un = entityUsername.find(TableUsername.class, usernameID);
+            un.setAdditionalInfo(tableUsername.getAdditionalInfo());
+            un.setEmailAddress(tableUsername.getEmailAddress());
+            un.setPhoneNumber(tableUsername.getPhoneNumber());
+
+            entityUsername.merge(tableUsername);
+            entityUsername.getTransaction().commit();
+           
+            return true;
+        } catch (Exception e) {
+            return false;
+
+        }
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
  }
     
 
