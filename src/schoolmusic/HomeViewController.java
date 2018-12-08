@@ -116,8 +116,8 @@ public class HomeViewController implements Initializable {
     private String fxmlDrawer;
 
     public void GetData(String stringUsername, String stringPassword) {
-        Routes.pw=stringPassword;
-        Routes.un=stringUsername;
+        Routes.pw = stringPassword;
+        Routes.un = stringUsername;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
         EntityManager entityWelcome = emf.createEntityManager();
         System.out.println("" + stringUsername + stringPassword);
@@ -181,14 +181,12 @@ public class HomeViewController implements Initializable {
             });
             try {
 
-                AnchorPane login = FXMLLoader.load(getClass().getResource(Routes.LOGINVIEW));
-                AnchorPane ManageUsers = FXMLLoader.load(getClass().getResource(Routes.MANAGEUSERS));
+                
                
-                AnchorPane contactus = FXMLLoader.load(getClass().getResource(Routes.CONTACTUS));
-                AnchorPane contactusers = FXMLLoader.load(getClass().getResource(Routes.CONTACTUSERS));
+                
+                AnchorPane contactus = FXMLLoader.load(getClass().getResource(Routes.CONTACTUS));  
                 AnchorPane welcome = FXMLLoader.load(getClass().getResource(Routes.WELCOMEVIEW));
-                AnchorPane AssignStudents=FXMLLoader.load(getClass().getResource(Routes.ASSIGNSTUDENTS));
-                //              AnchorPane welcome    =welcomeController;
+                
                 setNode(welcome);
                 drawer.setSidePane(sidePane);
 
@@ -197,38 +195,35 @@ public class HomeViewController implements Initializable {
                         node.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent ev) -> {
                             switch (node.getAccessibleText()) {
                                 case "homeMenu":
-                                    FXMLLoader welcomefXMLLoader = new FXMLLoader(getClass().getResource(Routes.WELCOMEVIEW));
+                                    AnchorPane WelcomeView;
                                     try {
-                                        Parent root = (Parent) welcomefXMLLoader.load();
+                                        WelcomeView = FXMLLoader.load(getClass().getResource(Routes.WELCOMEVIEW));
+                                        drawer.close();
+                                        setNode(WelcomeView);
+
+                                        this.txtCurrentWindow.setText("Welcome View");
+                                        transition.setRate(transition.getRate() * -1);
+                                        transition.play();
                                     } catch (IOException ex) {
                                         Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
 
-                                    WelcomeController welcomeController = (WelcomeController) welcomefXMLLoader.getController();
-
-                                    welcomeController.setUser(tableUsername);
-                                    drawer.close();
-                                    setNode(welcome);
-                                    this.txtCurrentWindow.setText("Home Page");
-                                    transition.setRate(transition.getRate() * -1);
-                                    transition.play();
                                     break;
 
                                 case "profileMenu":
                                     AnchorPane Profileview;
-                            try {
-                                Profileview = FXMLLoader.load(getClass().getResource(Routes.PROFILEVIEW));
-                                 drawer.close();
-                                    setNode(Profileview);
-                                    
-                                    this.txtCurrentWindow.setText("Profile Page");
-                                    transition.setRate(transition.getRate() * -1);
-                                    transition.play();
-                            } catch (IOException ex) {
-                                Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                                    
-                                   
+                                    try {
+                                        Profileview = FXMLLoader.load(getClass().getResource(Routes.PROFILEVIEW));
+                                        drawer.close();
+                                        setNode(Profileview);
+
+                                        this.txtCurrentWindow.setText("Profile Page");
+                                        transition.setRate(transition.getRate() * -1);
+                                        transition.play();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+
                                     break;
 
                                 case "contactusMenu":
@@ -239,41 +234,50 @@ public class HomeViewController implements Initializable {
                                     break;
 
                                 case "contactusersMenu":
-                                    drawer.close();
-                                    FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource(Routes.CONTACTUSERS));
+                                   AnchorPane ContactUsers;
+                                    try {
+                                        ContactUsers = FXMLLoader.load(getClass().getResource(Routes.CONTACTUSERS));
+                                        drawer.close();
+                                        setNode(ContactUsers);
 
-                                     {
-                                        try {
-                                            Parent root = (Parent) fXMLLoader.load();
-                                        } catch (IOException ex) {
-                                            Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
+                                        this.txtCurrentWindow.setText("Contact Users");
+                                        transition.setRate(transition.getRate() * -1);
+                                        transition.play();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
 
-                                    ContactusersController contactusersController = (ContactusersController) fXMLLoader.getController();
-
-                                    contactusersController.setUser(tableUsername);
-
-                                    setNode(contactusers);
-                                    this.txtCurrentWindow.setText("Contact Users");
-                                    transition.setRate(transition.getRate() * -1);
-                                    transition.play();
                                     break;
 
                                 case "manageusersMenu":
-                                    drawer.close();
+                                    AnchorPane ManageUsers;
+                                    try {
+                                        ManageUsers = FXMLLoader.load(getClass().getResource(Routes.MANAGEUSERS));
+                                        drawer.close();
+                                        setNode(ManageUsers);
 
-                                    setNode(ManageUsers);
-                                    this.txtCurrentWindow.setText("Manage Users");
-                                    transition.setRate(transition.getRate() * -1);
-                                    transition.play();
+                                        this.txtCurrentWindow.setText("Manage Users");
+                                        transition.setRate(transition.getRate() * -1);
+                                        transition.play();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+
                                     break;
                                 case "assignstudentMenu":
-                                    drawer.close();
-                                    setNode(AssignStudents);
-                                    this.txtCurrentWindow.setText("Assign Students");
-                                    transition.setRate(transition.getRate() * -1);
-                                    transition.play();
+                                    AnchorPane AssignStudents;
+                                    try {
+                                        AssignStudents = FXMLLoader.load(getClass().getResource(Routes.ASSIGNSTUDENTS));
+                                        drawer.close();
+                                        setNode(AssignStudents);
+
+                                        this.txtCurrentWindow.setText("Assign Students");
+                                        transition.setRate(transition.getRate() * -1);
+                                        transition.play();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+
                                     break;
 
                             }

@@ -37,15 +37,16 @@ import models.User;
  * @author danml
  */
 public class WelcomeController implements Initializable {
-     static TableUsername tableUsernameSigenIn;
+
+    static TableUsername tableUsernameSigenIn;
     @FXML
-        private TitledPane instrumentsForSaleTitledPane;
+    private TitledPane instrumentsForSaleTitledPane;
 
-  @FXML
-        private TitledPane eventsFestivalsTitledPane;
+    @FXML
+    private TitledPane eventsFestivalsTitledPane;
 
-  @FXML
-        private TitledPane announcementsTitledPane;
+    @FXML
+    private TitledPane announcementsTitledPane;
 
     @FXML
     private Label labelAdministratorMessage;
@@ -62,64 +63,67 @@ public class WelcomeController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // display logged user
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-            EntityManager entityEvent = emf.createEntityManager();
-            TypedQuery<TableEvent> query = entityEvent.createNamedQuery("TableEvent.findAll", TableEvent.class);
-            List<TableEvent> listEvent = query.getResultList();
-            
-            for (TableEvent row : listEvent) {
-labelAnnouncement.setText(row.getText());
-    }
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityEvent = emf.createEntityManager();
+        TypedQuery<TableEvent> query = entityEvent.createNamedQuery("TableEvent.findAll", TableEvent.class);
+        List<TableEvent> listEvent = query.getResultList();
+
+        for (TableEvent row : listEvent) {
+            labelAnnouncement.setText(row.getText());
+        }
         EntityManagerFactory emfManager = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-            EntityManager entityManager = emfManager.createEntityManager();
-             Query queryManager= entityManager.createNativeQuery("SELECT TABLE_MESSAGE.MESSAGE FROM HR.TABLE_MESSAGE WHERE  Hr.TABLE_MESSAGE.TO_USER_ID=12");
-          queryManager.setParameter("id", 12);
-     //        List<Object[]> listManager = queryManager.getResultList();
-            
-       //     for (Object[] row : listManager) {
+        EntityManager entityManager = emfManager.createEntityManager();
+        Query queryManager = entityManager.createNativeQuery("SELECT TABLE_MESSAGE.MESSAGE FROM HR.TABLE_MESSAGE WHERE  Hr.TABLE_MESSAGE.TO_USER_ID=12");
+        queryManager.setParameter("id", 12);
+        //        List<Object[]> listManager = queryManager.getResultList();
+
+        //     for (Object[] row : listManager) {
 //labelAdministratorMessage.setText((String) row[1]);
-   // }
+        // }
     }
+
     @FXML
     private void logOut(ActionEvent event) {
     }
-    
-    
-    
+
     @FXML
-    void PlayNote(MouseEvent  event) {
+    void PlayNote(MouseEvent event) {
         JFXButton note;
         note = (JFXButton) event.getSource();
-    
-    String uriString;
-   uriString = new File("C:\\Users\\virtualali\\Desktop\\NetBeansProjects\\MusicSchool\\src\\sounds\\piano\\"+note.getAccessibleText()+".mp3").toURI().toString();
-    
-    player = new MediaPlayer( new Media(uriString));
-    player.play();
-   
-        
+
+        String uriString;
+        uriString = new File("C:\\Users\\virtualali\\Desktop\\NetBeansProjects\\MusicSchool\\src\\sounds\\piano\\" + note.getAccessibleText() + ".mp3").toURI().toString();
+
+        player = new MediaPlayer(new Media(uriString));
+        player.play();
+
     }
-       @FXML
+
+    @FXML
     void StopNote(MouseEvent event) {
         ;
     }
 
-  public static void setUsername(TableUsername tableUsernameSigenIn) {
-WelcomeController.tableUsernameSigenIn=tableUsernameSigenIn;    }
+    public static void setUsername(TableUsername tableUsernameSigenIn) {
+        WelcomeController.tableUsernameSigenIn = tableUsernameSigenIn;
+    }
 
     public static TableUsername getTableUsername() {
         return tableUsernameSigenIn;
     }
-     public   void setUser(TableUsername tableUsernameSigenIn) {
-this.tableUsernameSigenIn=tableUsernameSigenIn;    }
 
-        public   TableUsername getTableUser() {
+    public void setUser(TableUsername tableUsernameSigenIn) {
+        this.tableUsernameSigenIn = tableUsernameSigenIn;
+    }
+
+    public TableUsername getTableUser() {
         return tableUsernameSigenIn;
     }
 
