@@ -235,7 +235,6 @@ public class ManageUsersController implements Initializable {
     private JFXCheckBox checkboxeuFemale;
 
     
-    
     TableUsername usernameEdit;
     ObservableList<TableUsername> dataUsernames;
 
@@ -435,7 +434,7 @@ updateTable();
                 tfeuPassoword.setText(usernameEdit.getPassword());
                 taeuAdditionalInfo.setText(usernameEdit.getAdditionalInfo());
                 tfeuPhoneNumber.setText(usernameEdit.getPhoneNumber());
-LocalDate birthDate = usernameEdit.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate birthDate = usernameEdit.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
                        dpeuBirthdate.setValue(birthDate);
                 tfeuPhoneNumber.setText(usernameEdit.getPhoneNumber());
@@ -836,6 +835,24 @@ private boolean tfeuValidateFirstName(){
             
             return false;            
         }
+    }
+@FXML
+    void femaleSelected(MouseEvent event) {
+        if(this.radioButtonAuMale.isSelected())
+        {
+            this.radioButtonAuMale.setSelected(false);
+        }
+        
+    }
+
+    @FXML
+    void maleSelected(MouseEvent event) {
+        if(this.radioButtonAuFemale.isSelected())
+        {
+            this.radioButtonAuFemale.setSelected(false);
+        }
+        
+
     }}
   
 
@@ -849,6 +866,8 @@ class ColumnFormatter<S, T> implements Callback<TableColumn<S, T>, TableCell<S, 
         super();
         this.format = format;
     }
+   
+
 
     @Override
     public TableCell<S, T> call(TableColumn<S, T> arg0) {

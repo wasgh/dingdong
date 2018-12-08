@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
@@ -48,8 +47,8 @@
                                                 <Blend />
                                              </effect>
                                           </Label>
-                                          <JFXRadioButton fx:id="radioButtonAuMale" text="Male" />
-                                          <JFXRadioButton fx:id="radioButtonAuFemale" text="Female" />
+                                          <JFXRadioButton fx:id="radioButtonAuMale" onMousePressed="#maleSelected" text="Male" />
+                                          <JFXRadioButton fx:id="radioButtonAuFemale" onMousePressed="#femaleSelected" text="Female" />
                                        </children>
                                     </HBox>
                                                 <JFXTextField fx:id="tfauSSN" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="118.0" promptText="SSN" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
@@ -191,7 +190,7 @@
                                             <children>
                                                 <HBox layoutY="-2.0" prefHeight="322.0" prefWidth="1198.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <children>
-                                                        <VBox prefHeight="248.0" prefWidth="441.0" spacing="20.0">
+                                                        <VBox prefHeight="256.0" prefWidth="410.0" spacing="20.0">
                                                             <padding>
                                                                 <Insets bottom="10.0" left="20.0" top="5.0" />
                                                             </padding>
@@ -199,37 +198,37 @@
                                                                 <HBox prefHeight="0.0" prefWidth="446.0">
                                                                     <children>
                                                                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="First Name" />
-                                                                        <JFXTextField fx:id="tfeuFirstName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="310.0" stylesheets="@../styles/styles.css" />
+                                                                        <JFXTextField fx:id="tfeuFirstName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="280.0" stylesheets="@../styles/styles.css" />
                                                                     </children>
                                                                 </HBox>
                                                                 <HBox prefHeight="0.0" prefWidth="446.0">
                                                                     <children>
                                                                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="Last Name" />
-                                                                        <JFXTextField fx:id="tfeuLastName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="310.0" stylesheets="@../styles/styles.css" />
+                                                                        <JFXTextField fx:id="tfeuLastName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="280.0" stylesheets="@../styles/styles.css" />
                                                                     </children>
                                                                 </HBox>
                                                                 <HBox prefHeight="0.0" prefWidth="446.0">
                                                                     <children>
                                                                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="Usernme" />
-                                                                        <JFXTextField fx:id="tfeuUserName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="310.0" stylesheets="@../styles/styles.css" />
+                                                                        <JFXTextField fx:id="tfeuUserName" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="280.0" stylesheets="@../styles/styles.css" />
                                                                     </children>
                                                                 </HBox>
                                                                 <HBox prefHeight="0.0" prefWidth="446.0">
                                                                     <children>
                                                                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="Password" />
-                                                                        <JFXTextField fx:id="tfeuPassoword" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="310.0" stylesheets="@../styles/styles.css" />
+                                                                        <JFXTextField fx:id="tfeuPassoword" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="280.0" stylesheets="@../styles/styles.css" />
                                                                     </children>
                                                                 </HBox>
                                                                 <HBox prefHeight="0.0" prefWidth="446.0">
                                                                     <children>
                                                                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="Email" />
-                                                                        <JFXTextField fx:id="tfeuEmail" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="310.0" stylesheets="@../styles/styles.css" />
+                                                                        <JFXTextField fx:id="tfeuEmail" maxWidth="312.0" minWidth="204.0" prefHeight="30.0" prefWidth="280.0" stylesheets="@../styles/styles.css" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>
                                                         </VBox>
                                           <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                                        <VBox alignment="CENTER" prefHeight="207.0" prefWidth="374.0" spacing="5.0">
+                                                        <VBox alignment="CENTER" prefHeight="256.0" prefWidth="332.0" spacing="20.0">
                                                             <children>
                                                                 <HBox prefHeight="0.0" prefWidth="446.0">
                                                                     <children>
@@ -244,16 +243,16 @@
                                                                         <JFXDatePicker fx:id="dpeuBirthdate" />
                                                                     </children>
                                                                 </HBox>
-                                                                <JFXTextArea fx:id="taeuAdditionalInfo" maxWidth="377.0" minWidth="187.0" prefHeight="136.0" prefWidth="354.0" promptText="Additional Info" style="-fx-background-color: F4F4F4;" styleClass="text-field" stylesheets="@../styles/styles.css" />
+                                                                <JFXTextArea fx:id="taeuAdditionalInfo" maxWidth="377.0" minWidth="187.0" prefHeight="120.0" prefWidth="332.0" promptText="Additional Info" style="-fx-background-color: F4F4F4;" styleClass="text-field" stylesheets="@../styles/styles.css" />
                                                             </children>
                                                             <padding>
-                                                                <Insets bottom="5.0" top="5.0" />
+                                                                <Insets bottom="5.0" />
                                                             </padding>
                                                         </VBox>
                                           <Separator orientation="VERTICAL" prefHeight="262.0" prefWidth="12.0" />
-                                                        <VBox alignment="CENTER" prefHeight="262.0" prefWidth="355.0" spacing="5.0">
+                                                        <VBox alignment="CENTER" prefHeight="256.0" prefWidth="435.0" spacing="5.0">
                                                             <children>
-                                                                <HBox prefHeight="57.0" prefWidth="307.0" spacing="5.0">
+                                                                <HBox alignment="CENTER" prefHeight="57.0" prefWidth="307.0" spacing="5.0">
                                                                     <children>
                                                                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="351.0" stylesheets="@../styles/styles.css" text="Select">
                                                                             <effect>
@@ -262,10 +261,10 @@
                                                                         </Label>
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox prefHeight="66.0" prefWidth="323.0" spacing="5.0">
+                                                                <HBox alignment="CENTER" prefHeight="66.0" prefWidth="323.0" spacing="5.0">
                                                                     <children>
-                                                                        <JFXComboBox fx:id="cbeuRank" prefHeight="40.0" prefWidth="123.0" promptText="Rank" />
-                                                                        <JFXComboBox fx:id="cbeuSkill" prefHeight="40.0" prefWidth="120.0" promptText="Skill" />
+                                                                        <JFXComboBox fx:id="cbeuRank" prefHeight="40.0" prefWidth="170.0" promptText="Rank" />
+                                                                        <JFXComboBox fx:id="cbeuSkill" prefHeight="40.0" prefWidth="162.0" promptText="Skill" />
                                                                         <JFXComboBox fx:id="cbeuLevel" prefHeight="40.0" prefWidth="97.0" promptText="Level" />
                                                                     </children>
                                                                 </HBox>

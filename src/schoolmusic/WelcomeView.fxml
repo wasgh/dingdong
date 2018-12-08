@@ -329,37 +329,37 @@
                         <InnerShadow choke="0.37" height="0.0" radius="1.7850000000000001" width="9.14" />
                      </effect>
                   </JFXButton>
-                  <JFXButton accessibleText="F3" alignment="BOTTOM_CENTER" layoutX="121.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
+                  <JFXButton accessibleText="F2" alignment="BOTTOM_CENTER" layoutX="121.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
                      <effect>
                         <InnerShadow choke="0.37" height="0.0" radius="1.7850000000000001" width="9.14" />
                      </effect>
                   </JFXButton>
-                  <JFXButton accessibleText="F3#" alignment="BOTTOM_CENTER" layoutX="139.0" layoutY="7.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="140.0" prefWidth="5.0" style="-fx-background-color: black;" text=" ">
+                  <JFXButton accessibleText="F2#" alignment="BOTTOM_CENTER" layoutX="139.0" layoutY="7.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="140.0" prefWidth="5.0" style="-fx-background-color: black;" text=" ">
                      <effect>
                         <DropShadow radius="4.75" spread="0.63" width="0.0" />
                      </effect>
                   </JFXButton>
-                  <JFXButton accessibleText="C3" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
+                  <JFXButton accessibleText="C2" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
                      <effect>
                         <InnerShadow choke="0.37" height="0.0" radius="1.7850000000000001" width="9.14" />
                      </effect>
                   </JFXButton>
-                  <JFXButton accessibleText="D3" alignment="BOTTOM_CENTER" layoutX="57.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
+                  <JFXButton accessibleText="D2" alignment="BOTTOM_CENTER" layoutX="57.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
                      <effect>
                         <InnerShadow choke="0.37" height="0.0" radius="1.7850000000000001" width="9.14" />
                      </effect>
                   </JFXButton>
-                  <JFXButton accessibleText="C3#" alignment="BOTTOM_CENTER" layoutX="43.0" layoutY="7.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="140.0" prefWidth="5.0" style="-fx-background-color: black;" text=" ">
+                  <JFXButton accessibleText="C2#" alignment="BOTTOM_CENTER" layoutX="43.0" layoutY="7.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="140.0" prefWidth="5.0" style="-fx-background-color: black;" text=" ">
                      <effect>
                         <DropShadow radius="4.75" spread="0.63" width="0.0" />
                      </effect>
                   </JFXButton>
-                  <JFXButton accessibleText="E3" alignment="BOTTOM_CENTER" layoutX="89.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
+                  <JFXButton accessibleText="E2" alignment="BOTTOM_CENTER" layoutX="89.0" layoutY="3.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="234.0" prefWidth="30.0" style="-fx-background-color: white;" text=" " textFill="#c3c2c2">
                      <effect>
                         <InnerShadow choke="0.37" height="0.0" radius="1.7850000000000001" width="9.14" />
                      </effect>
                   </JFXButton>
-                  <JFXButton accessibleText="D3#" alignment="BOTTOM_CENTER" layoutX="76.0" layoutY="7.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="140.0" prefWidth="5.0" style="-fx-background-color: black;" text=" ">
+                  <JFXButton accessibleText="D2#" alignment="BOTTOM_CENTER" layoutX="76.0" layoutY="7.0" onMousePressed="#PlayNote" onMouseReleased="#StopNote" prefHeight="140.0" prefWidth="5.0" style="-fx-background-color: black;" text=" ">
                      <effect>
                         <DropShadow radius="4.75" spread="0.63" width="0.0" />
                      </effect>
