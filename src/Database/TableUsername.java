@@ -293,8 +293,5 @@ public class TableUsername implements Serializable {
         return "Database.TableUsername[ usernameId=" + usernameId + " ]";
     }
 
-    public void setLevel(String LevelString) {
-      level=BigInteger.valueOf(Long.parseLong(LevelString));
-
-    }
+    
 }

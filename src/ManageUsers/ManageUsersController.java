@@ -48,16 +48,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 /*import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -273,7 +276,7 @@ public class ManageUsersController implements Initializable {
                         username.setEmailAddress(EmailString);
                         username.setDataadded(dateNow);
                         username.setBirthdate(dateBirthdate);
-                        username.setLevel(LevelString);
+                        username.setLevel(new BigInteger(LevelString.getBytes()));
                         username.setSkill(SkillString);
                         username.setRank(RankString);
                         entityUsername.persist(username);
@@ -383,26 +386,16 @@ public class ManageUsersController implements Initializable {
 
     @FXML
     void GenderSelection(ActionEvent event) {
-        if (this.checkboxauFemale.isSelected() && event.getSource().equals(this.checkboxauFemale)) {
-            if (this.checkboxauMale.isSelected()) {
-                this.checkboxauMale.setSelected(false);
-            }
-        } else if (this.checkboxauMale.isSelected() && event.getSource().equals(this.checkboxauMale)) {
-            if (this.checkboxauFemale.isSelected()) {
-                this.checkboxauFemale.setSelected(false);
-            }
-
-        }
-        if (this.checkboxeuFemale.isSelected() && event.getSource().equals(this.checkboxeuFemale)) {
-            if (this.checkboxeuMale.isSelected()) {
-                this.checkboxeuMale.setSelected(false);
-            }
-        } else if (this.checkboxauMale.isSelected() && event.getSource().equals(this.checkboxeuMale)) {
-            if (this.checkboxeuFemale.isSelected()) {
-                this.checkboxeuFemale.setSelected(false);
-            }
-
-        }
+       if(event.getSource()==checkboxauFemale&&checkboxauMale.isSelected())
+           checkboxauMale.setSelected(false);
+       if(event.getSource()==checkboxauMale&&checkboxauFemale.isSelected())
+           checkboxauFemale.setSelected(false);
+       if(event.getSource()==checkboxeuFemale&&checkboxeuMale.isSelected())
+           checkboxeuMale.setSelected(false);
+       if(event.getSource()==checkboxeuMale&&checkboxeuFemale.isSelected())
+           checkboxeuFemale.setSelected(false);
+      
+        
     }
 
     public boolean checkByUsername(String username) {
@@ -441,12 +434,15 @@ public class ManageUsersController implements Initializable {
                 tfeuPassoword.setText(usernameEdit.getPassword());
                 taeuAdditionalInfo.setText(usernameEdit.getAdditionalInfo());
                 tfeuPhoneNumber.setText(usernameEdit.getPhoneNumber());
+                
                 //       dpeuBirthdate.getEditor().setText(username.getBirthdate().toString());
                 tfeuPhoneNumber.setText(usernameEdit.getPhoneNumber());
-
+                System.out.println(new String(usernameEdit.getLevel().toByteArray()));
                 cbeuRank.setValue(usernameEdit.getRank());
                 cbeuLevel.setValue(new String(usernameEdit.getLevel().toByteArray()));
                 cbeuSkill.setValue(usernameEdit.getSkill());
+           seteucheckFemaleORMale(usernameEdit.getSex());
+                
             }
         }
     }
@@ -460,23 +456,37 @@ public class ManageUsersController implements Initializable {
         skillColumn.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("skill"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("phoneNumber"));
         dataAddedColumn.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("dataadded"));
+  //       dataAddedColumn.setCellValueFactory( new ColumnFormatter<>(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+        // dataAddedColumn.setCellValueFactory(new PropertyValueFactory<>("dataadded"));
+//dataAddedColumn.setCellFactory(new ColumnFormatter<>(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
 
-    }
+                 }
 
     private String aucheckFemaleORMale() {
-        if (this.checkboxauMale.isSelected()) {
+        if (this.checkboxauMale.isSelected()&& !this.checkboxauFemale.isSelected()) {
             return "M";
-        } else if (this.checkboxauFemale.isSelected()) {
+        } else if (this.checkboxauFemale.isSelected()&& !this.checkboxauMale.isSelected()) {
             return "F";
         }
         return null;
 
     }
+private void seteucheckFemaleORMale(String gender){
+        if (gender=="M")
+        {
+            this.checkboxeuMale.setSelected(true);
+            this.checkboxeuFemale.setSelected(false);
+        }           
+                    
+        else  {
+           this.checkboxeuMale.setSelected(false);
+        this.checkboxeuFemale.setSelected(true);}
 
+}
     private String eucheckFemaleORMale() {
-        if (this.checkboxauMale.isSelected()) {
+        if (this.checkboxauMale.isSelected()&& !this.checkboxauFemale.isSelected()) {
             return "M";
-        } else if (this.checkboxauFemale.isSelected()) {
+        } else if (this.checkboxauFemale.isSelected()&& !this.checkboxauMale.isSelected()) {
             return "F";
         }
         return null;
@@ -504,7 +514,7 @@ public class ManageUsersController implements Initializable {
         usernameEdit.setPhoneNumber(tfeuPhoneNumber.getText());
         usernameEdit.setUsername(tfeuUserName.getText());
         usernameEdit.setSkill(SkillString);
-        usernameEdit.setLevel(LevelString);
+        usernameEdit.setLevel(new BigInteger(LevelString.getBytes()));
         usernameEdit.setRank(RankString);
              CountType();
 
@@ -679,9 +689,36 @@ void updateTable(){
         List<TableUsername> listUsernames = query.getResultList();
         dataUsernames = FXCollections.observableArrayList();
         for (TableUsername row : listUsernames) {
+
             dataUsernames.add(new TableUsername(row.getUsernameId(), row.getUsername(), row.getPassword(), row.getSex(), row.getAdditionalInfo(), row.getEmailAddress(), row.getSsn(), row.getDataadded(), row.getFirstName(), row.getLastName(), row.getBirthdate(), row.getPhoneNumber(), row.getRank(), row.getLevel(), row.getSkill()));
         }
         tvMainTable.setItems(dataUsernames);
 }
 
+}
+class ColumnFormatter<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
+
+    private final DateTimeFormatter format;
+
+    public ColumnFormatter(DateTimeFormatter format) {
+        super();
+        this.format = format;
+    }
+
+    @Override
+    public TableCell<S, T> call(TableColumn<S, T> arg0) {
+        return new TableCell<S, T>() {
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setGraphic(null);
+                } else {
+                    LocalDate ld = (LocalDate) item;
+                    String val = ld.format(format);
+                    setGraphic(new Label(val));
+                }
+            }
+        };
+    }
 }
