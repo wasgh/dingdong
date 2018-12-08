@@ -145,7 +145,6 @@ LocalDate birthday = tableUsername.getBirthdate().toInstant().atZone(ZoneId.syst
 Period period = Period.between(birthday, LocalDate.now());
     labelAge.setText(String.valueOf(period.getYears()));
     System.out.print(period.getYears());
-    //labelAge.setText();
     labelLevel.setText(tableUsername.getLevel().toString());
     tfPhoneNumber.setText(tableUsername.getPhoneNumber());
     tfAdditionalInfo.setText(tableUsername.getAdditionalInfo());
