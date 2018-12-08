@@ -21,6 +21,8 @@ public class Routes {
     public static String FORGOTPW="/login/forgotpw.fxml";
     public static String CONTACTUSERS="/ContactUsers/contactusers.fxml";
     public static String ASSIGNSTUDENTS="/AssignStudents/AssignStudents.fxml";
+    public static String DASHBOARD="/Dashboard/Dashboard.fxml";
+
     public static String un;
     public static String pw;
 }

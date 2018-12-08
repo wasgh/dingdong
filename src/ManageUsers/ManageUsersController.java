@@ -434,8 +434,11 @@ updateTable();
                 tfeuPassoword.setText(usernameEdit.getPassword());
                 taeuAdditionalInfo.setText(usernameEdit.getAdditionalInfo());
                 tfeuPhoneNumber.setText(usernameEdit.getPhoneNumber());
-                LocalDate birthDate = usernameEdit.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
+                LocalDate birthDate;
+              
+                birthDate = usernameEdit.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+             
+              
                        dpeuBirthdate.setValue(birthDate);
                 tfeuPhoneNumber.setText(usernameEdit.getPhoneNumber());
                 System.out.println(new String(usernameEdit.getLevel().toByteArray()));

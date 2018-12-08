@@ -225,6 +225,22 @@ public class HomeViewController implements Initializable {
                                     }
 
                                     break;
+                                    
+                                    case "dashboardMEnu":
+                                    AnchorPane Dashboard;
+                                    try {
+                                        Dashboard = FXMLLoader.load(getClass().getResource(Routes.DASHBOARD));
+                                        drawer.close();
+                                        setNode(Dashboard);
+
+                                        this.txtCurrentWindow.setText("Dashboard");
+                                        transition.setRate(transition.getRate() * -1);
+                                        transition.play();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+
+                                    break;
 
                                 case "contactusMenu":
                                     drawer.close();
