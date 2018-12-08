@@ -10,6 +10,7 @@ import Database.TableEvent;
 import Database.TableMessage;
 import Database.TableUsername;
 import com.jfoenix.controls.JFXButton;
+import helpers.Routes;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -60,6 +61,8 @@ public class WelcomeController implements Initializable {
     private TextField txtLoggedUser;
     @FXML
     private MediaPlayer player;
+    private String password;
+    private String username;
 
     /**
      * Initializes the controller class.
@@ -69,7 +72,9 @@ public class WelcomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // display logged user
+        password=Routes.pw;
+        username=Routes.un;
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
         EntityManager entityEvent = emf.createEntityManager();
         TypedQuery<TableEvent> query = entityEvent.createNamedQuery("TableEvent.findAll", TableEvent.class);
@@ -78,16 +83,19 @@ public class WelcomeController implements Initializable {
         for (TableEvent row : listEvent) {
             labelAnnouncement.setText(row.getText());
         }
+        
+        
         EntityManagerFactory emfManager = Persistence.createEntityManagerFactory("schoolMusicFxPU");
         EntityManager entityManager = emfManager.createEntityManager();
-        Query queryManager = entityManager.createNativeQuery("SELECT TABLE_MESSAGE.MESSAGE FROM HR.TABLE_MESSAGE WHERE  Hr.TABLE_MESSAGE.TO_USER_ID=12");
-        queryManager.setParameter("id", 12);
-        //        List<Object[]> listManager = queryManager.getResultList();
-
-        //     for (Object[] row : listManager) {
-//labelAdministratorMessage.setText((String) row[1]);
-        // }
-    }
+        Query queryManager = entityManager.createNativeQuery("SELECT TABLE_MESSAGE.MESSAGE FROM HR.TABLE_MESSAGE WHERE  Hr.TABLE_MESSAGE.TO_USER_ID='"+currentUsernameID(username,password)+"'");
+        List<String> listManager = queryManager.getResultList();
+ StringBuffer stringBuffer = new StringBuffer();
+           
+        for (String row : listManager) {
+            stringBuffer.append(row+"\n");
+        }
+        labelAdministratorMessage.setText(stringBuffer.toString());
+}
 
     @FXML
     private void logOut(ActionEvent event) {
@@ -126,5 +134,14 @@ public class WelcomeController implements Initializable {
     public TableUsername getTableUser() {
         return tableUsernameSigenIn;
     }
+public String currentUsernameID(String User,String pass){
+
+ EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityWelcome = emf.createEntityManager();
+        TableUsername tableUsername = (TableUsername) entityWelcome.createNativeQuery("Select * FROM table_username Where table_username.username=" + "'" + this.username + "'" + " and table_username.password=" + "'" + this.password + "'", TableUsername.class).getSingleResult();
+
+
+    return tableUsername.getUsernameId().toString();
+}
 
 }

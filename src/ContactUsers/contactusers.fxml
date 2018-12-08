@@ -51,8 +51,8 @@
                                         <JFXTextArea fx:id="taMessage" focusColor="#00c0ef" labelFloat="true" maxWidth="506.0" minWidth="506.0" prefHeight="200.0" prefWidth="550.0" promptText="Write a message" styleClass="card" stylesheets="@../styles/styles.css" />
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <JFXButton fx:id="btnSave" onAction="#btnSaveAction" prefHeight="50.0" prefWidth="190.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Save" />
-                                                <JFXButton fx:id="btnSaveAll"  onAction="#btnSaveAllAction" prefHeight="50.0" prefWidth="190.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Save All">
+                                                <JFXButton fx:id="btnSave" onAction="#btnSaveAction" prefHeight="50.0" prefWidth="190.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Send" />
+                                                <JFXButton fx:id="btnSaveAll" onAction="#btnSaveAllAction" prefHeight="50.0" prefWidth="190.0" styleClass="blue-btn" stylesheets="@../styles/styles.css" text="Send All">
                                                     <effect>
                                                         <DropShadow />
                                                     </effect>
@@ -69,7 +69,7 @@
                                         <JFXTextArea fx:id="taAnnouncement" focusColor="#009e56" maxWidth="536.0" minWidth="536.0" prefHeight="200.0" prefWidth="550.0" styleClass="card" stylesheets="@../styles/styles.css" />
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <JFXButton fx:id="btnUpdateAnnouncement"  onAction="#btnUpdateAnnouncementAction" prefHeight="50.0" prefWidth="250.0" styleClass="green-btn" stylesheets="@../styles/styles.css" text="Update Announcement">
+                                                <JFXButton fx:id="btnUpdateAnnouncement" onAction="#btnUpdateAnnouncementAction" prefHeight="50.0" prefWidth="250.0" styleClass="green-btn" stylesheets="@../styles/styles.css" text="Update Announcement">
                                                     <effect>
                                                         <DropShadow />
                                                     </effect>

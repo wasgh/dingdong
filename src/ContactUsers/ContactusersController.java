@@ -107,28 +107,7 @@ TableEvent tableEvent;
             tableEvent = entityEvent.find(TableEvent.class, new BigDecimal(1));
           taAnnouncement.setText( tableEvent.getText());
             entityEvent.getTransaction().commit();
-        
-   /*      Connection c = null;
-            Statement stmt = null;
-            ResultSet rs = null ;
-        try {
-           
-            c = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "hr", "hr");
 
-            System.out.println("Opened database successfully");
-            stmt = c.createStatement();
-
-             rs = stmt.executeQuery("SELECT TEXT FROM HR.TABLE_EVENT WHERE ID_EVENT=1");
-            rs.next();
-            
-            taAnnouncement.setText( rs.getString("TEXT"));
-                    rs.close();
-c.close();
-                    } catch (SQLException ex) {
-            Logger.getLogger(ContactusersController.class.getName()).log(Level.SEVERE, null, ex);
-        
-
-        }*/
             
              emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
             EntityManager entityManager = emf.createEntityManager();
@@ -143,58 +122,6 @@ c.close();
             initColumns();
 
     }
-
-    @FXML
-    void btnSaveAction(ActionEvent event) {
-                int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
-
-         if (selectedIndex >= 0) {
-          if (usernameEdit != null) {
-              
- EntityManagerFactory emfFor = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-              EntityManager entityMessageemfFor = emfFor.createEntityManager();
-                            entityMessageemfFor.getTransaction().begin();
-
-              TableMessage tableMessage = new TableMessage();
-              
-                        tableMessage.setMessage(taMessage.getText());
-tableMessage.setFromUserId(tableUsernameSigenIn);
-tableMessage.setToUserId(usernameEdit);
-entityMessageemfFor.persist(tableMessage);
-                                entityMessageemfFor.getTransaction().commit();
-               
-                        entityMessageemfFor.close();
-           new Alert(Alert.AlertType.WARNING, "we sanededd the massage ").show();
-
-          }
-                        }   else {
-            new Alert(Alert.AlertType.WARNING, "Paiese choose user to send massage!").show();
-        }
-                                      this.taMessage.clear();
-
-    }
-
-    @FXML
-    void btnUpdateAnnouncementAction(ActionEvent event) {
-      EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-        EntityManager entityEvent = emf.createEntityManager();
-tableEvent.setText(taAnnouncement.getText());
-           
-        if (updateUsername(tableEvent,tableEvent.getIdEvent() )) {
-            new Alert(Alert.AlertType.CONFIRMATION, " updated", ButtonType.CLOSE).show();
-        } else {
-            new Alert(Alert.AlertType.CONFIRMATION, "updating  was failed", ButtonType.CLOSE).show();
-
-        }
-
-    }
-
-    private void clearFields() {
-
-        this.taAnnouncement.clear();
-
-    }
-
     @FXML
     void btnSaveAllAction(ActionEvent event) {
                 System.out.println("ContactusersController : "+getTableUsername().getFirstName());
@@ -224,6 +151,29 @@ entityMessageemfFor.persist(tableMessage);
 
                              this.taMessage.clear();
     }
+
+
+    @FXML
+    void btnUpdateAnnouncementAction(ActionEvent event) {
+      EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityEvent = emf.createEntityManager();
+          tableEvent.setText(taAnnouncement.getText());
+           
+        if (updateUsername(tableEvent,tableEvent.getIdEvent() )) {
+            new Alert(Alert.AlertType.CONFIRMATION, "updated", ButtonType.CLOSE).show();
+        } else {
+            new Alert(Alert.AlertType.CONFIRMATION, "updating  was failed", ButtonType.CLOSE).show();
+
+        }
+
+    }
+
+    private void clearFields() {
+
+        this.taAnnouncement.clear();
+
+    }
+
 
     public void initColumns() {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("firstName"));
@@ -255,10 +205,10 @@ entityMessageemfFor.persist(tableMessage);
     @FXML
     void displaySelected(MouseEvent event) {
                 int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
-                                        usernameEdit = (TableUsername) contactTable.getItems().get(selectedIndex);
 
         if (selectedIndex >= 0) {
                         if (usernameEdit != null) {
+                                        usernameEdit = (TableUsername) contactTable.getItems().get(selectedIndex);
 
                         }
         }
@@ -276,4 +226,35 @@ this.tableUsernameSigenIn=tableUsernameSigenIn;    }
     public   TableUsername getTableUser() {
         return tableUsernameSigenIn;
     }
+        @FXML
+    void btnSaveAction(ActionEvent event) {
+                int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
+
+         if (selectedIndex >= 0) {
+          if (usernameEdit != null) {
+              
+ EntityManagerFactory emfFor = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+              EntityManager entityMessageemfFor = emfFor.createEntityManager();
+                            entityMessageemfFor.getTransaction().begin();
+
+              TableMessage tableMessage = new TableMessage();
+              
+                        tableMessage.setMessage(taMessage.getText());
+tableMessage.setFromUserId(tableUsernameSigenIn);
+tableMessage.setToUserId(usernameEdit);
+entityMessageemfFor.persist(tableMessage);
+                                entityMessageemfFor.getTransaction().commit();
+               
+                        entityMessageemfFor.close();
+           new Alert(Alert.AlertType.WARNING, "we sanededd the massage ").show();
+
+          }
+                        }   else {
+            new Alert(Alert.AlertType.WARNING, "Paiese choose user to send massage!").show();
+        }
+                                      this.taMessage.clear();
+
+    }
+
+
 }
