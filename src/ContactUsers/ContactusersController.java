@@ -10,6 +10,7 @@ import Database.TableMessage;
 import Database.TableUsername;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import helpers.Routes;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Connection;
@@ -43,7 +44,8 @@ import javax.persistence.TypedQuery;
  * @author ai-19
  */
 public class ContactusersController implements Initializable {
-static TableUsername tableUsernameSigenIn;
+
+     TableUsername tableUsernameSigenIn;
     TableUsername usernameEdit;
 
     @FXML
@@ -91,75 +93,77 @@ static TableUsername tableUsernameSigenIn;
     @FXML
     private JFXButton btnUpdateAnnouncement;
     ObservableList<TableUsername> dataUsernames;
-TableEvent tableEvent;
+    TableEvent tableEvent;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-              EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
         EntityManager entityEvent = emf.createEntityManager();
-/*@SequenceGenerator(name
+        EntityManager entityWelcome = emf.createEntityManager();
+         tableUsernameSigenIn = (TableUsername) entityWelcome.createNativeQuery("Select * FROM table_username Where table_username.username=" + "'" + Routes.un + "'" + " and table_username.password=" + "'" + Routes.pw + "'", TableUsername.class).getSingleResult();
+
+        /*@SequenceGenerator(name
         = "SequenceIdGeneratorEvent", sequenceName
         = "EVENT_ID_SEQUENCE", allocationSize = 1)*/
-      
-            entityEvent.getTransaction().begin();;
-            tableEvent = entityEvent.find(TableEvent.class, new BigDecimal(1));
-          taAnnouncement.setText( tableEvent.getText());
-            entityEvent.getTransaction().commit();
 
-            
-             emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-            EntityManager entityManager = emf.createEntityManager();
-            TypedQuery<TableUsername> query = entityManager.createNamedQuery("TableUsername.findAll", TableUsername.class);
-            List<TableUsername> listUsernames = query.getResultList();
-            
-            dataUsernames = FXCollections.observableArrayList();
-            for (TableUsername row : listUsernames) {
-                dataUsernames.add(new TableUsername(row.getUsernameId(), row.getUsername(), row.getPassword(), row.getSex(), row.getAdditionalInfo(), row.getEmailAddress(), row.getSsn(), row.getDataadded(), row.getFirstName(), row.getLastName(), row.getBirthdate(), row.getPhoneNumber(), row.getRank(), row.getLevel(), row.getSkill()));
-            }
-            contactTable.setItems(dataUsernames);
-            initColumns();
+        entityEvent.getTransaction().begin();;
+        tableEvent = entityEvent.find(TableEvent.class, new BigDecimal(1));
+        taAnnouncement.setText(tableEvent.getText());
+        entityEvent.getTransaction().commit();
+
+        emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityManager = emf.createEntityManager();
+        TypedQuery<TableUsername> query = entityManager.createNamedQuery("TableUsername.findAll", TableUsername.class);
+        List<TableUsername> listUsernames = query.getResultList();
+
+        dataUsernames = FXCollections.observableArrayList();
+        for (TableUsername row : listUsernames) {
+            dataUsernames.add(new TableUsername(row.getUsernameId(), row.getUsername(), row.getPassword(), row.getSex(), row.getAdditionalInfo(), row.getEmailAddress(), row.getSsn(), row.getDataadded(), row.getFirstName(), row.getLastName(), row.getBirthdate(), row.getPhoneNumber(), row.getRank(), row.getLevel(), row.getSkill()));
+        }
+        contactTable.setItems(dataUsernames);
+        initColumns();
 
     }
+
     @FXML
     void btnSaveAllAction(ActionEvent event) {
-                System.out.println("ContactusersController : "+getTableUsername().getFirstName());
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-    EntityManager entityMessage = emf.createEntityManager();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityMessage = emf.createEntityManager();
         TypedQuery<TableUsername> query = entityMessage.createNamedQuery("TableUsername.findAll", TableUsername.class);
         List<TableUsername> listUsernames = query.getResultList();
-EntityManager entityMessageemfFor = null;
-     TableMessage tableMessage ;
-        for (TableUsername tableUsername :listUsernames){
-     EntityManagerFactory emfFor = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-     entityMessageemfFor = emfFor.createEntityManager();
-                            entityMessageemfFor.getTransaction().begin();
+        EntityManager entityMessageemfFor = null;
+        TableMessage tableMessage;
+        for (TableUsername tableUsername : listUsernames) {
+            EntityManagerFactory emfFor = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+            entityMessageemfFor = emfFor.createEntityManager();
+            entityMessageemfFor.getTransaction().begin();
 
             tableMessage = new TableMessage();
-   
-                        tableMessage.setMessage(taMessage.getText());
-tableMessage.setFromUserId(tableUsernameSigenIn);
-tableMessage.setToUserId(tableUsername);
-entityMessageemfFor.persist(tableMessage);
-                                entityMessageemfFor.getTransaction().commit();
-               
-                        entityMessageemfFor.close();
 
-    } 
+            tableMessage.setMessage(taMessage.getText());
+            tableMessage.setFromUserId(tableUsernameSigenIn);
+            tableMessage.setToUserId(tableUsername);
+            entityMessageemfFor.persist(tableMessage);
+            entityMessageemfFor.getTransaction().commit();
 
-                             this.taMessage.clear();
+            entityMessageemfFor.close();
+
+        }
+
+        this.taMessage.clear();
     }
-
 
     @FXML
     void btnUpdateAnnouncementAction(ActionEvent event) {
-      EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
         EntityManager entityEvent = emf.createEntityManager();
-          tableEvent.setText(taAnnouncement.getText());
-           
-        if (updateUsername(tableEvent,tableEvent.getIdEvent() )) {
+        tableEvent.setText(taAnnouncement.getText());
+
+        if (updateUsername(tableEvent, tableEvent.getIdEvent())) {
             new Alert(Alert.AlertType.CONFIRMATION, "updated", ButtonType.CLOSE).show();
         } else {
             new Alert(Alert.AlertType.CONFIRMATION, "updating  was failed", ButtonType.CLOSE).show();
@@ -174,7 +178,6 @@ entityMessageemfFor.persist(tableMessage);
 
     }
 
-
     public void initColumns() {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("firstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("lastName"));
@@ -186,9 +189,10 @@ entityMessageemfFor.persist(tableMessage);
         dataAddedCol.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("dataadded"));
 
     }
- public boolean updateUsername(TableEvent tableEventNew, BigDecimal usernameID) {
-       EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-       EntityManager entityEvent = emf.createEntityManager();
+
+    public boolean updateUsername(TableEvent tableEventNew, BigDecimal usernameID) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityEvent = emf.createEntityManager();
         try {
             entityEvent.getTransaction().begin();;
             TableEvent tableEventOld = entityEvent.find(TableEvent.class, usernameID);
@@ -202,59 +206,47 @@ entityMessageemfFor.persist(tableMessage);
         }
 
     }
+
     @FXML
     void displaySelected(MouseEvent event) {
-                int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
 
         if (selectedIndex >= 0) {
-                        if (usernameEdit != null) {
-                                        usernameEdit = (TableUsername) contactTable.getItems().get(selectedIndex);
+            if (usernameEdit != null) {
+                usernameEdit = (TableUsername) contactTable.getItems().get(selectedIndex);
 
-                        }
+            }
         }
     }
 
-    public static void setUsername(TableUsername tableUsernameSigenIn) {
-ContactusersController.tableUsernameSigenIn=tableUsernameSigenIn;    }
-
-    public static TableUsername getTableUsername() {
-        return tableUsernameSigenIn;
-    }
-     public   void setUser(TableUsername tableUsernameSigenIn) {
-this.tableUsernameSigenIn=tableUsernameSigenIn;    }
-
-    public   TableUsername getTableUser() {
-        return tableUsernameSigenIn;
-    }
-        @FXML
+    @FXML
     void btnSaveAction(ActionEvent event) {
-                int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
 
-         if (selectedIndex >= 0) {
-          if (usernameEdit != null) {
-              
- EntityManagerFactory emfFor = Persistence.createEntityManagerFactory("schoolMusicFxPU");
-              EntityManager entityMessageemfFor = emfFor.createEntityManager();
-                            entityMessageemfFor.getTransaction().begin();
+        if (selectedIndex >= 0) {
+            if (usernameEdit != null) {
 
-              TableMessage tableMessage = new TableMessage();
-              
-                        tableMessage.setMessage(taMessage.getText());
-tableMessage.setFromUserId(tableUsernameSigenIn);
-tableMessage.setToUserId(usernameEdit);
-entityMessageemfFor.persist(tableMessage);
-                                entityMessageemfFor.getTransaction().commit();
-               
-                        entityMessageemfFor.close();
-           new Alert(Alert.AlertType.WARNING, "we sanededd the massage ").show();
+                EntityManagerFactory emfFor = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+                EntityManager entityMessageemfFor = emfFor.createEntityManager();
+                entityMessageemfFor.getTransaction().begin();
 
-          }
-                        }   else {
+                TableMessage tableMessage = new TableMessage();
+
+                tableMessage.setMessage(taMessage.getText());
+                tableMessage.setFromUserId(tableUsernameSigenIn);
+                tableMessage.setToUserId(usernameEdit);
+                entityMessageemfFor.persist(tableMessage);
+                entityMessageemfFor.getTransaction().commit();
+
+                entityMessageemfFor.close();
+                new Alert(Alert.AlertType.WARNING, "we sanededd the massage ").show();
+
+            }
+        } else {
             new Alert(Alert.AlertType.WARNING, "Paiese choose user to send massage!").show();
         }
-                                      this.taMessage.clear();
+        this.taMessage.clear();
 
     }
-
 
 }

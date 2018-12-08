@@ -23,6 +23,8 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -134,7 +136,7 @@ ProfilepageController.tableUsernameSigenIn=tableUsernameSigenIn;    }
         System.out.println("" + this.Un + this.Pw);
         tableUsername = (TableUsername) entityWelcome.createNativeQuery("Select * FROM table_username Where table_username.username=" + "'" + this.Un + "'" + " and table_username.password=" + "'" + this.Pw + "'", TableUsername.class).getSingleResult();
 
-    labelName.setText(tableUsername.getFirstName()+tableUsername.getLastName());      
+    labelName.setText(tableUsername.getFirstName()+" "+tableUsername.getLastName());      
     labelUsername.setText(tableUsername.getUsername());
     labelSkill.setText(tableUsername.getSkill());
     labelRank.setText(tableUsername.getRank());
@@ -159,6 +161,7 @@ Period period = Period.between(birthday, LocalDate.now());
         EntityManager entityWelcome = emf.createEntityManager();
         System.out.println("" + this.Un + this.Pw);
         tableUsername = (TableUsername) entityWelcome.createNativeQuery("Select * FROM table_username Where table_username.username=" + "'" + this.Un + "'" + " and table_username.password=" + "'" + this.Pw + "'", TableUsername.class).getSingleResult();
+        if ( tfauValidateEamil() & tfauValidateMobileNo() ) {
 
         String additionalInfo = (tfAdditionalInfo.getText()!= null ? tfAdditionalInfo.getText() : "");
         String phoneNo = (tfPhoneNumber.getText() != null ? tfPhoneNumber.getText() : "");
@@ -178,13 +181,43 @@ Period period = Period.between(birthday, LocalDate.now());
         } else {
             new Alert(Alert.AlertType.CONFIRMATION, "updating User was failed", ButtonType.CLOSE).show();
 
-        }
+        }}
         
         
     }
+  private boolean tfauValidateMobileNo(){
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(tfPhoneNumber.getText());
+        if(m.find() && m.group().equals(tfPhoneNumber.getText())){
+            return true;
+        }else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validate Mobile Number");
+                alert.setHeaderText(null);
+                alert.setContentText("Please Enter Valid Mobile Number");
+                alert.showAndWait();
+            
+            return false;            
+        }
+    }
+      
     
-    
-    
+    private boolean tfauValidateEamil() {
+
+        Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9]+([.][a-zA-Z]+)");
+        Matcher m = p.matcher(tfEmail.getText());
+        if (m.find() && m.group().equals(tfEmail.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Eamil");
+            alert.setHeaderText(null);
+            alert.setContentText("Palease Enter Valid Email");
+            alert.showAndWait();
+            return false;
+        }
+    }
+
     
      public boolean updateUsername(TableUsername tableUsername, BigDecimal usernameID) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("schoolMusicFxPU");

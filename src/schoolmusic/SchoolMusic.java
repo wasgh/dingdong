@@ -27,7 +27,7 @@ public class SchoolMusic extends Application {
         
         //wasim is here
 
-        Parent root = FXMLLoader.load(getClass().getResource(Routes.MANAGEUSERS));
+        Parent root = FXMLLoader.load(getClass().getResource(Routes.LOGINVIEW));
         JFXDecorator decorator=new JFXDecorator(stage, root, false, false, true);
         decorator.setCustomMaximize(false);
         decorator.setBorder(Border.EMPTY);
