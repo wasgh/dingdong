@@ -18,6 +18,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -29,10 +33,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -188,6 +195,9 @@ public class ContactusersController implements Initializable {
         phoneNumberCol.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("phoneNumber"));
         dataAddedCol.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("dataadded"));
 
+           dataAddedCol.setCellValueFactory(new PropertyValueFactory<TableUsername, String>("dataadded"));
+        dataAddedCol.setCellFactory(new ColumnFormatter<>(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+    
     }
 
     public boolean updateUsername(TableEvent tableEventNew, BigDecimal usernameID) {
@@ -249,4 +259,38 @@ public class ContactusersController implements Initializable {
 
     }
 
+}
+
+class ColumnFormatter<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
+
+    private final DateTimeFormatter format;
+
+    public ColumnFormatter(DateTimeFormatter format) {
+        super();
+        this.format = format;
+    }
+   
+
+
+    @Override
+    public TableCell<S, T> call(TableColumn<S, T> arg0) {
+        return new TableCell<S, T>() {
+            @Override
+            protected void updateItem(T item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setGraphic(null);
+                } else {
+                   Date sqlDate = (Date) item;
+                    //Date input = new Date();
+                    java.util.Date utilDate = new java.util.Date(sqlDate.getTime());
+
+                    LocalDate ld = utilDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                    String val = ld.format(format);
+                    setGraphic(new Label(val));
+                }
+            }
+        };
+    }
 }
