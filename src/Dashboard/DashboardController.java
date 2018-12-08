@@ -28,7 +28,7 @@ public class DashboardController implements Initializable {
         // TODO
     }    
     
-       @FXML
+    @FXML
     private PieChart pcSkills;
 
     @FXML

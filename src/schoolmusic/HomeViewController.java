@@ -226,7 +226,7 @@ public class HomeViewController implements Initializable {
 
                                     break;
                                     
-                                    case "dashboardMEnu":
+                                    case "dashboardMenu":
                                     AnchorPane Dashboard;
                                     try {
                                         Dashboard = FXMLLoader.load(getClass().getResource(Routes.DASHBOARD));

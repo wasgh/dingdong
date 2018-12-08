@@ -38,6 +38,8 @@ public class DrawerController implements Initializable {
 
     @FXML
     private JFXButton manageusersBtn;
+    @FXML
+    private JFXButton dashboardBtn;
 
     @FXML
     private JFXButton logoutBtn;
