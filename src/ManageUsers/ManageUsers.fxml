@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -26,9 +27,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="1200.0" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageUsers.ManageUsersController">
     <children>
-        <JFXTabPane layoutX="138.0" layoutY="100.0" prefHeight="684.0" prefWidth="1105.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <JFXTabPane fx:id="tabPaneMain" layoutX="138.0" layoutY="100.0" prefHeight="684.0" prefWidth="1105.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
-                <Tab text="ADD USER">
+                <Tab fx:id="addUserTab" text="ADD USER">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1091.0">
                             <children>
@@ -40,17 +41,17 @@
                                                 <JFXTextField fx:id="tfauLastName" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Last Name" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
                                                 <JFXTextField fx:id="tfauEmail" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="46.0" promptText="Email address" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
                                                 <JFXTextField fx:id="tfauPhoneNumber" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="82.0" promptText="Phone Number" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
-                                                <HBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="397.0" spacing="5.0">
-                                                    <children>
-                                                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="102.0" stylesheets="@../styles/styles.css" text="Gender" textAlignment="CENTER">
-                                                            <effect>
-                                                                <Blend />
-                                                            </effect>
-                                                        </Label>
-                                                        <JFXCheckBox fx:id="checkboxauMale" onAction="#GenderSelection" prefHeight="29.0" prefWidth="111.0" stylesheets="@../styles/styles.css" text="Male" />
-                                                        <JFXCheckBox fx:id="checkboxauFemale" onAction="#GenderSelection" prefHeight="169.0" prefWidth="127.0" stylesheets="@../styles/styles.css" text="Female" />
-                                                    </children>
-                                                </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="397.0" spacing="5.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="39.0" prefWidth="102.0" stylesheets="@../styles/styles.css" text="Gender" textAlignment="CENTER">
+                                             <effect>
+                                                <Blend />
+                                             </effect>
+                                          </Label>
+                                          <JFXRadioButton fx:id="radioButtonAuMale" text="Male" />
+                                          <JFXRadioButton fx:id="radioButtonAuFemale" text="Female" />
+                                       </children>
+                                    </HBox>
                                                 <JFXTextField fx:id="tfauSSN" focusColor="#00add8" labelFloat="true" layoutX="10.0" layoutY="118.0" promptText="SSN" stylesheets="@../styles/styles.css" unFocusColor="#868282" />
                                                 <JFXDatePicker fx:id="dpauBirthdate" prefHeight="34.0" prefWidth="384.0" promptText="Birthdate" stylesheets="@../styles/styles.css" />
                                             </children>
@@ -160,7 +161,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="EDIT USERS">
+                <Tab fx:id="editUserTab" text="EDIT USER">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1091.0">
                             <children>
@@ -236,13 +237,7 @@
                                                                         <JFXTextField fx:id="tfeuPhoneNumber" maxWidth="312.0" minWidth="186.0" prefHeight="30.0" prefWidth="186.0" stylesheets="@../styles/styles.css" />
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                                                    <children>
-                                                                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="Gender" />
-                                                                        <JFXCheckBox fx:id="checkboxeuMale" onAction="#GenderSelection" prefHeight="38.0" prefWidth="101.0" text="Male" />
-                                                                        <JFXCheckBox fx:id="checkboxeuFemale" onAction="#GenderSelection" prefHeight="36.0" prefWidth="100.0" text="Female" />
-                                                                    </children>
-                                                                </HBox>
+                                                             
                                                                 <HBox prefHeight="42.0" prefWidth="317.0">
                                                                     <children>
                                                                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="88.0" styleClass="blue-label" stylesheets="@../styles/styles.css" text="Birthdate" />
