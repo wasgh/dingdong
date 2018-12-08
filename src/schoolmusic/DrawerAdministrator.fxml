@@ -24,7 +24,7 @@
       <JFXButton fx:id="homeBtn" accessibleText="homeMenu" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Home Page" />
       <JFXButton fx:id="myprofileBtn" accessibleText="profileMenu" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="My Profile" />
       <JFXButton fx:id="editcontactBtn" accessibleText="contactusersMenu" layoutX="10.0" layoutY="182.0" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Contact Users" />
-      <JFXButton accessibleText="dashboardMenu" contentDisplay="CENTER" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Dashboard" />
+      <JFXButton fx:id="dashboardBtn" accessibleText="dashboardMenu" contentDisplay="CENTER" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Dashboard" />
       <JFXButton fx:id="manageusersBtn" accessibleText="manageusersMenu" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Manage Users" />
       <JFXButton fx:id="logoutBtn" accessibleText="logoutMenu" layoutX="10.0" layoutY="182.0" onAction="#logOut" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Logout" />
       <JFXButton fx:id="exitBtn" accessibleText="exitMenu" onAction="#exit" prefHeight="43.0" prefWidth="200.0" styleClass="drawer-buttons" stylesheets="@../styles/styles.css" text="Exit" />
