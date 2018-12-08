@@ -87,12 +87,16 @@ public class WelcomeController implements Initializable {
         
         EntityManagerFactory emfManager = Persistence.createEntityManagerFactory("schoolMusicFxPU");
         EntityManager entityManager = emfManager.createEntityManager();
-        Query queryManager = entityManager.createNativeQuery("SELECT TABLE_MESSAGE.MESSAGE FROM HR.TABLE_MESSAGE WHERE  Hr.TABLE_MESSAGE.TO_USER_ID='"+currentUsernameID(username,password)+"'");
-        List<String> listManager = queryManager.getResultList();
+        Query queryManager = entityManager.createNativeQuery("SELECT TABLE_MESSAGE.FROM_USER_ID,TABLE_MESSAGE.MESSAGE FROM HR.TABLE_MESSAGE WHERE  Hr.TABLE_MESSAGE.TO_USER_ID='"+currentUsernameID(username,password)+"'");
+        List<Object[]> listManager = queryManager.getResultList();
  StringBuffer stringBuffer = new StringBuffer();
            
-        for (String row : listManager) {
-            stringBuffer.append(row+"\n");
+        for (Object[] row : listManager) {
+                    EntityManagerFactory emfManagerFrom = Persistence.createEntityManagerFactory("schoolMusicFxPU");
+        EntityManager entityManagerFrom = emfManager.createEntityManager();
+            TableUsername tableUsernameFrom = (TableUsername) entityManagerFrom.createNativeQuery("Select * FROM table_username Where table_username.USERNAME_ID='"+row[0]+"'", TableUsername.class).getSingleResult();
+
+            stringBuffer.append(tableUsernameFrom.getFirstName()+" "+tableUsernameFrom.getLastName()+" : "+row[1]+"\n");
         }
         labelAdministratorMessage.setText(stringBuffer.toString());
 }
